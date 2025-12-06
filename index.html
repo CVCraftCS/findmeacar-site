@@ -30,6 +30,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* PAGE BACKGROUND WITH VISIBLE CAR SILHOUETTE */
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #111827, #020617 50%, #000);
@@ -38,39 +39,39 @@
       display: flex;
       justify-content: center;
       padding: 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cpath d='M150 350 L300 250 H900 L1050 350 H1120 V420 H1070 A80 80 0 0 1 930 420 A80 80 0 0 1 790 420 H410 A80 80 0 0 1 270 420 A80 80 0 0 1 150 420 Z' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10' stroke-linejoin='round'/%3E%3Ccircle cx='380' cy='420' r='70' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10'/%3E%3Ccircle cx='820' cy='420' r='70' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 85% auto;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 1;
     }
 
     .app {
       position: relative;
+      z-index: 1;
       width: 100%;
       max-width: 480px;
       border-radius: 24px;
-      background: #020617;
+      background: #020617d9;
       border: 1px solid rgba(148, 163, 184, 0.25);
       box-shadow: 0 24px 80px rgba(15, 23, 42, 0.9);
       padding: 20px 18px 22px;
       display: flex;
       flex-direction: column;
       gap: 18px;
-      overflow: hidden;
-    }
-
-    /* More visible car silhouette background */
-    .app::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 250'%3E%3Cpath d='M60 150 L120 90 H360 L410 150 H460 V190 H430 A40 40 0 0 1 350 190 A40 40 0 0 1 270 190 H180 A40 40 0 0 1 100 190 A40 40 0 0 1 60 190 Z' fill='none' stroke='%23ffffff' stroke-opacity='0.18' stroke-width='10' stroke-linejoin='round'/%3E%3Ccircle cx='150' cy='190' r='36' fill='none' stroke='%23ffffff' stroke-opacity='0.18' stroke-width='10'/%3E%3Ccircle cx='330' cy='190' r='36' fill='none' stroke='%23ffffff' stroke-opacity='0.18' stroke-width='10'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: 140% auto;
-      opacity: 1; /* visibility controlled by stroke-opacity */
-      pointer-events: none;
     }
 
     .status-bar {
-      position: relative;
-      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -99,8 +100,6 @@
     }
 
     .hero {
-      position: relative;
-      z-index: 1;
       display: flex;
       gap: 14px;
       align-items: center;
@@ -125,7 +124,6 @@
       font-weight: 700;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      margin-left: 0.2em;
     }
 
     .hero-avatar-sub {
@@ -148,7 +146,6 @@
       letter-spacing: 0.02em;
       display: flex;
       gap: 6px;
-      flex-wrap: wrap;
     }
 
     .hero-title .highlight {
@@ -180,12 +177,10 @@
     }
 
     .section {
-      position: relative;
-      z-index: 1;
       margin-top: 6px;
       padding: 12px;
       border-radius: 18px;
-      background: #020617;
+      background: #020617ef;
       border: 1px solid rgba(31, 41, 55, 0.9);
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
     }
@@ -324,8 +319,6 @@
     }
 
     .footer {
-      position: relative;
-      z-index: 1;
       margin-top: 6px;
       font-size: 11px;
       color: var(--muted);
@@ -378,7 +371,7 @@
     <section class="section">
       <div class="section-header">
         <h2 class="section-title">How it works</h2>
-      <span class="section-pill">3 steps</span>
+        <span class="section-pill">3 steps</span>
       </div>
 
       <div class="section-body">
@@ -483,7 +476,7 @@
       <div class="section-body faq-list">
         <div><strong>Do we inspect or buy the car for you?</strong><br />No — we source suitable listings. You handle viewings, checks and purchase.</div>
         <div><strong>Do we guarantee cars?</strong><br />No — we don’t inspect or warranty vehicles.</div>
-        <div><strong>What areas do we cover?</strong><br />Online listings across the UK, based on how far you're willing to travel.</div>
+        <div><strong>What areas do we cover?</strong><br />Online listings across the UK.</div>
         <div><strong>Do we highlight red flags?</strong><br />We can flag details we notice, but this does not replace a professional inspection.</div>
       </div>
     </section>
@@ -503,13 +496,10 @@
           We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments and paperwork are your responsibility.
         </p>
         <p>
-          We do not guarantee condition, history, mileage, price, specification or availability. Listings may change or be removed without notice.
+          We do not guarantee condition, history, mileage, price, specification or availability.
         </p>
         <p>
-          You should carry out your own checks before any purchase, including a vehicle history check and professional inspection if needed.
-        </p>
-        <p>
-          Any comments we make about listings are for general guidance only and not professional or legal advice. We accept no liability for issues arising from any vehicle you choose to view or purchase.
+          You should carry out your own checks before any purchase.
         </p>
         <p>
           By using this service, you confirm that you understand and accept these terms.
