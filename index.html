@@ -78,12 +78,8 @@
     }
 
     @keyframes snow {
-      0% {
-        transform: translate3d(0,-120px,0);
-      }
-      100% {
-        transform: translate3d(-60px,620px,0);
-      }
+      0% { transform: translate3d(0,-120px,0); }
+      100% { transform: translate3d(-60px,620px,0); }
     }
 
     /* Overall layout for 3 columns */
@@ -113,9 +109,7 @@
       backdrop-filter: blur(8px);
     }
 
-    .side-card {
-      padding: 14px 14px 16px;
-    }
+    .side-card { padding: 14px 14px 16px; }
 
     .side-inner {
       display: flex;
@@ -351,9 +345,7 @@
       color: #d1d5db;
     }
 
-    .info-list li {
-      margin-bottom: 3px;
-    }
+    .info-list li { margin-bottom: 3px; }
 
     .steps {
       display: flex;
@@ -423,9 +415,7 @@
       color: #e5e7eb;
     }
 
-    .pricing-list li {
-      margin-bottom: 4px;
-    }
+    .pricing-list li { margin-bottom: 4px; }
 
     .pricing-tier-name {
       font-weight: 600;
@@ -488,9 +478,7 @@
       color: #d1d5db;
     }
 
-    .faq-list strong {
-      color: #f9fafb;
-    }
+    .faq-list strong { color: #f9fafb; }
 
     .chips {
       display: flex;
@@ -517,9 +505,7 @@
       align-items: center;
     }
 
-    .footer strong {
-      color: var(--accent);
-    }
+    .footer strong { color: var(--accent); }
 
     @media (min-width: 768px) {
       body { padding: 28px; }
@@ -530,12 +516,8 @@
         flex-direction: row;
         gap: 16px;
       }
-      .side-card {
-        width: 24%;
-      }
-      .app {
-        width: 52%;
-      }
+      .side-card { width: 24%; }
+      .app { width: 52%; }
     }
   </style>
 </head>
@@ -630,7 +612,7 @@
 
             <div class="hero-tags">
               <span class="hero-tag">Save time searching</span>
-              <span class="hero-tag">Used &amp; new cars</span>
+              <span class="hero-tag">Basic, in-depth &amp; premium options</span>
               <span class="hero-tag">Straight to your phone</span>
             </div>
           </div>
@@ -657,7 +639,7 @@
                 <div class="step-badge">2</div>
                 <div>
                   <strong>Choose your service level</strong>
-                  £30 basic search, £50 in-depth search or £150 premium concierge search.
+                  £30 Basic search, £50 In-depth search or £150 Premium concierge search.
                 </div>
               </div>
 
@@ -689,16 +671,6 @@
                 </ul>
               </div>
             </div>
-
-            <div class="btn-row">
-              <a class="btn btn-primary"
-                 href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%20I%27m%20interested%20in%20your%20car%20finding%20service."
-                 target="_blank" rel="noopener">Contact us on WhatsApp</a>
-
-              <a class="btn btn-secondary"
-                 href="mailto:findmeacar-uk@outlook.com?subject=FindMeACar%20Enquiry">
-                 Email us</a>
-            </div>
           </div>
         </section>
 
@@ -711,18 +683,19 @@
 
           <div class="section-body">
             <p>
-              Ready to begin? Use the buttons below to send us your search details.
-              We will respond promptly with your reference number and payment details.
+              Ready to begin? We keep the process simple. Follow the two quick steps below and we’ll start searching.
             </p>
-
-            <p>
-              Once payment is confirmed, your personalised search will begin. Responses
-              are normally within 24 hours with initial results.
-            </p>
-
             <p>If you don’t see a reply, please check your spam folder.</p>
 
-            <!-- Step 1: Send your details -->
+            <!-- STEP 1 -->
+            <div style="margin-top:10px;margin-bottom:4px;" class="info-title">
+              Step 1 – Send us your search details
+            </div>
+            <p>
+              Use WhatsApp or email so we have your brief in writing. We’ll reply promptly with your search
+              reference and confirmation.
+            </p>
+
             <div class="btn-row">
               <a class="btn btn-primary"
                  href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%2C%20In-depth%20%C2%A350%20or%20Premium%20%C2%A3150)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
@@ -736,22 +709,26 @@
               </a>
             </div>
 
-            <!-- Step 2: Secure payment via Stripe -->
-            <p style="margin-top:10px;">
-              Once you’ve shared your brief, you can pay securely online using Stripe:
+            <!-- STEP 2 -->
+            <div style="margin-top:14px;margin-bottom:4px;" class="info-title">
+              Step 2 – Choose your service &amp; pay securely
+            </div>
+            <p>
+              Once you’ve sent your details, choose the service level that suits you and complete payment via Stripe.
+              We’ll match your payment to your brief and begin your search.
             </p>
 
             <div class="btn-row">
               <a class="btn btn-primary btn-stripe"
                  href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
                  target="_blank" rel="noopener">
-                 Pay £30 – Basic search (Stripe)
+                 Pay £30 – Basic search
               </a>
 
               <a class="btn btn-secondary btn-stripe"
                  href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
                  target="_blank" rel="noopener">
-                 Pay £50 – In-depth search (Stripe)
+                 Pay £50 – In-depth search
               </a>
             </div>
 
@@ -759,13 +736,13 @@
               <a class="btn btn-secondary btn-stripe"
                  href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
                  target="_blank" rel="noopener">
-                 Pay £150 – Premium concierge search (Stripe)
+                 Pay £150 – Premium concierge search
               </a>
             </div>
 
             <div class="chips">
               <div class="chip">● Payment handled securely by Stripe</div>
-              <div class="chip">● Instant email receipt & payment reference</div>
+              <div class="chip">● Instant email receipt &amp; payment reference</div>
               <div class="chip">● We’ll confirm your FindMeACar search reference after payment</div>
             </div>
           </div>
