@@ -667,7 +667,13 @@
           <div class="section-body">
             <p>
               Choose your service level and how you’d like to contact us. We’ll open your secure Stripe payment page
-              and a WhatsApp or email template at the same time, so you can pay and send us your brief in one go.
+              in a new tab and a WhatsApp or email template at the same time.
+            </p>
+            <p style="margin-top:4px;">
+              Please complete payment first, then fill in the message template including the
+              <strong>payment email you used on Stripe</strong> and, if you have it, the
+              <strong>Stripe receipt/reference</strong> from your email receipt. This helps us match your payment
+              to your search quickly.
             </p>
             <p>If you don’t see a reply, please check your spam folder.</p>
 
@@ -727,7 +733,7 @@
 
             <div class="chips">
               <div class="chip">● Stripe handles your payment securely</div>
-              <div class="chip">● We match your payment to your search reference</div>
+              <div class="chip">● We match payments using your email / receipt reference</div>
               <div class="chip">● Initial results usually within 24 hours</div>
             </div>
           </div>
@@ -847,6 +853,8 @@
       return (
         "Hi FindMeACar,\n\n" +
         "I'd like to begin a car search. My details are:\n\n" +
+        "Payment email address (used on Stripe):\n" +
+        "Stripe receipt / reference (if available):\n\n" +
         "Full name:\n" +
         "Phone number:\n" +
         "Preferred contact method (WhatsApp / Email):\n" +
@@ -859,8 +867,8 @@
         "Location and travel distance:\n" +
         "Ideal buying timeframe:\n\n" +
         "I would like to use the " + label + ".\n\n" +
-        "I understand payment is handled securely via Stripe. " +
-        "Once my payment has gone through, please confirm my FindMeACar search reference number.\n\n" +
+        "I understand payment is handled securely via Stripe. Once my payment has gone through, " +
+        "please confirm my FindMeACar search reference number and begin my search.\n\n" +
         "Thank you."
       );
     }
