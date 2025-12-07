@@ -120,6 +120,7 @@
     .side-inner {
       display: flex;
       flex-direction: column;
+      gap: 8px;
     }
 
     .app {
@@ -334,7 +335,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #9ca3af;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .side-inner p {
@@ -344,7 +345,7 @@
     }
 
     .info-list {
-      margin-top: 4px;
+      margin-top: 2px;
       padding-left: 14px;
       font-size: 12px;
       color: #d1d5db;
@@ -404,7 +405,7 @@
     .cta-text {
       font-size: 12px;
       color: var(--muted);
-      max-width: 72%;
+      max-width: 100%;
     }
 
     .cta-title {
@@ -413,7 +414,22 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+    }
+
+    .pricing-list {
+      list-style: none;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .pricing-list li {
+      margin-bottom: 4px;
+    }
+
+    .pricing-tier-name {
+      font-weight: 600;
+      color: #facc15;
     }
 
     .btn-row {
@@ -530,7 +546,6 @@
   <div class="snow snow-front"></div>
 
   <div class="page-layout">
-
     <!-- 3-column layout: left side card, main app, right side card -->
     <div class="columns">
 
@@ -642,7 +657,7 @@
                 <div class="step-badge">2</div>
                 <div>
                   <strong>Choose your service level</strong>
-                  £30 basic search or £50 in-depth search.
+                  £30 basic search, £50 in-depth search or £150 premium concierge search.
                 </div>
               </div>
 
@@ -657,13 +672,21 @@
 
             <div class="cta-card">
               <div class="cta-text">
-                <div class="cta-title">Finder’s fee</div>
-
-                <p><strong>£30 – Basic search</strong><br />A shortlist of suitable cars.</p>
-
-                <p style="margin-top:4px;">
-                  <strong>£50 – In-depth search</strong><br />More results &amp; tighter filtering.
-                </p>
+                <div class="cta-title">Finder’s fees</div>
+                <ul class="pricing-list">
+                  <li>
+                    <span class="pricing-tier-name">£30 – Basic search</span><br />
+                    A shortlist of suitable cars matched to your brief.
+                  </li>
+                  <li>
+                    <span class="pricing-tier-name">£50 – In-depth search</span><br />
+                    More results and tighter filtering with deeper searching.
+                  </li>
+                  <li>
+                    <span class="pricing-tier-name">£150 – Premium concierge search</span><br />
+                    Priority search with personalised guidance, negotiation support and scam checks.
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -702,13 +725,13 @@
             <!-- Step 1: Send your details -->
             <div class="btn-row">
               <a class="btn btn-primary"
-                 href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%20or%20In-depth%20%C2%A350)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
+                 href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%2C%20In-depth%20%C2%A350%20or%20Premium%20%C2%A3150)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
                  target="_blank" rel="noopener">
                  Begin my search (WhatsApp)
               </a>
 
               <a class="btn btn-secondary"
-                 href="mailto:findmeacar-uk@outlook.com?subject=Begin%20my%20FindMeACar%20Search&amp;body=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%20or%20In-depth%20%C2%A350)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you.">
+                 href="mailto:findmeacar-uk@outlook.com?subject=Begin%20my%20FindMeACar%20Search&amp;body=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%2C%20In-depth%20%C2%A350%20or%20Premium%20%C2%A3150)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you.">
                  Begin my search (Email)
               </a>
             </div>
@@ -729,6 +752,14 @@
                  href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
                  target="_blank" rel="noopener">
                  Pay £50 – In-depth search (Stripe)
+              </a>
+            </div>
+
+            <div class="btn-row" style="margin-top:8px;">
+              <a class="btn btn-secondary btn-stripe"
+                 href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
+                 target="_blank" rel="noopener">
+                 Pay £150 – Premium concierge search (Stripe)
               </a>
             </div>
 
@@ -792,7 +823,7 @@
 
       </main>
 
-      <!-- Right side card: The service -->
+      <!-- Right side card: Service + subscription -->
       <aside class="side-card">
         <div class="side-inner">
           <div class="info-title">The service</div>
@@ -803,9 +834,32 @@
           <ul class="info-list">
             <li>£30 – Basic search with a clear shortlist</li>
             <li>£50 – In-depth search with more options</li>
+            <li>£150 – Premium concierge search with priority handling</li>
             <li>Results delivered directly to you, usually within 24 hours of payment</li>
             <li>More personalised or prompt searches can be arranged if required, as long as this is discussed and agreed in advance</li>
           </ul>
+
+          <hr style="border:none;border-top:1px solid rgba(148,163,184,0.4);margin:10px 0;" />
+
+          <div class="info-title">Market watcher</div>
+          <p>
+            For longer-term buyers, our optional subscription keeps you ahead of the market with regular updates.
+          </p>
+          <ul class="info-list">
+            <li>Weekly deal and price-drop alerts</li>
+            <li>Market trends and value tips</li>
+            <li>Scam and fraud warnings</li>
+            <li>Recommended vehicles for common budgets</li>
+            <li>Cancel anytime</li>
+          </ul>
+
+          <div class="btn-row" style="margin-top:6px;">
+            <a class="btn btn-secondary btn-stripe"
+               href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
+               target="_blank" rel="noopener">
+               Subscribe – £4.99/month
+            </a>
+          </div>
         </div>
       </aside>
 
