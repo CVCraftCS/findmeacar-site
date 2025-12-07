@@ -31,7 +31,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* PAGE BACKGROUND WITH CAR SILHOUETTE */
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #111827, #020617 55%, #000);
@@ -56,7 +55,6 @@
       z-index: 0;
     }
 
-    /* Falling snow overlay (festive) – bigger & denser */
     .snow {
       position: fixed;
       inset: 0;
@@ -82,7 +80,6 @@
       100% { transform: translate3d(-60px,620px,0); }
     }
 
-    /* Overall layout for 3 columns */
     .page-layout {
       position: relative;
       z-index: 2;
@@ -111,11 +108,7 @@
 
     .side-card { padding: 14px 14px 16px; }
 
-    .side-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .side-inner { display: flex; flex-direction: column; gap: 8px; }
 
     .app {
       padding: 22px 18px 22px;
@@ -152,7 +145,6 @@
       box-shadow: 0 0 6px #22c55e;
     }
 
-    /* Festive season banner */
     .season-banner {
       margin-top: 10px;
       padding: 10px 12px;
@@ -443,6 +435,8 @@
       align-items: center;
       text-align: center;
       transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease, filter 0.08s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-primary {
@@ -523,15 +517,13 @@
 </head>
 
 <body>
-  <!-- Festive snow layers -->
   <div class="snow snow-back"></div>
   <div class="snow snow-front"></div>
 
   <div class="page-layout">
-    <!-- 3-column layout: left side card, main app, right side card -->
     <div class="columns">
 
-      <!-- Left side card: About us -->
+      <!-- LEFT: ABOUT -->
       <aside class="side-card">
         <div class="side-inner">
           <div class="info-title">About us</div>
@@ -548,10 +540,9 @@
         </div>
       </aside>
 
-      <!-- Main centre bubble -->
+      <!-- CENTRE: MAIN APP -->
       <main class="app">
 
-        <!-- Status bar -->
         <header class="status-bar">
           <div class="pill">
             <span class="pill-dot"></span> FindMeACar Online
@@ -559,27 +550,19 @@
           <span>Professional response within 24 hours</span>
         </header>
 
-        <!-- Festive banner -->
+        <!-- FESTIVE BANNER -->
         <section class="season-banner">
           <div class="season-graphic">
-            <!-- Simple sleigh with car SVG -->
             <svg viewBox="0 0 120 80" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <!-- Sleigh runners -->
               <path d="M10 62 H92 C98 62 102 66 102 72 H96 C96 69 94 67 92 67 H18 C18 70 16 72 13 72 C10 72 8 70 8 67 H14 C14 68 14.5 69 15.5 69 C16.5 69 17 68.5 17 67.5"
                     fill="none" stroke="#7c2d12" stroke-width="3.5" stroke-linecap="round" />
-              <!-- Sleigh base -->
               <rect x="18" y="54" width="64" height="6" rx="3" fill="#b91c1c" />
-              <!-- Car body -->
               <rect x="32" y="32" width="42" height="16" rx="4" fill="#facc15" />
-              <!-- Car roof -->
               <path d="M38 32 L48 22 H68 L74 32 Z" fill="#facc15" />
-              <!-- Car windows -->
               <rect x="44" y="25" width="10" height="8" rx="2" fill="#0f172a" opacity="0.9" />
               <rect x="56" y="25" width="10" height="8" rx="2" fill="#0f172a" opacity="0.9" />
-              <!-- Wheels as baubles -->
               <circle cx="40" cy="52" r="4" fill="#0f172a" />
               <circle cx="66" cy="52" r="4" fill="#0f172a" />
-              <!-- Little tree on roof -->
               <path d="M58 18 L54 24 H62 Z" fill="#16a34a" />
               <line x1="58" y1="18" x2="58" y2="22" stroke="#166534" stroke-width="1.5" />
             </svg>
@@ -594,7 +577,7 @@
           </div>
         </section>
 
-        <!-- Hero -->
+        <!-- HERO -->
         <section class="hero">
           <div class="hero-avatar">
             <div class="hero-avatar-main">FM</div>
@@ -618,7 +601,7 @@
           </div>
         </section>
 
-        <!-- How it works -->
+        <!-- HOW IT WORKS -->
         <section class="section">
           <div class="section-header">
             <h2 class="section-title">How it works</h2>
@@ -674,7 +657,7 @@
           </div>
         </section>
 
-        <!-- Begin Search -->
+        <!-- BEGIN YOUR SEARCH -->
         <section class="section">
           <div class="section-header">
             <h2 class="section-title">Begin your search</h2>
@@ -683,67 +666,69 @@
 
           <div class="section-body">
             <p>
-              Ready to begin? We keep the process simple. Follow the two quick steps below and we’ll start searching.
+              Choose your service level and how you’d like to contact us. We’ll open your secure Stripe payment page
+              and a WhatsApp or email template at the same time, so you can pay and send us your brief in one go.
             </p>
             <p>If you don’t see a reply, please check your spam folder.</p>
 
-            <!-- STEP 1 -->
-            <div style="margin-top:10px;margin-bottom:4px;" class="info-title">
-              Step 1 – Send us your search details
+            <!-- BASIC -->
+            <div style="margin-top:10px;" class="info-title">
+              Basic search – £30
             </div>
-            <p>
-              Use WhatsApp or email so we have your brief in writing. We’ll reply promptly with your search
-              reference and confirmation.
+            <p style="margin-bottom:6px;">
+              A clear shortlist of suitable cars matched to your requirements.
             </p>
-
             <div class="btn-row">
-              <a class="btn btn-primary"
-                 href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%2C%20In-depth%20%C2%A350%20or%20Premium%20%C2%A3150)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
-                 target="_blank" rel="noopener">
-                 Begin my search (WhatsApp)
-              </a>
-
-              <a class="btn btn-secondary"
-                 href="mailto:findmeacar-uk@outlook.com?subject=Begin%20my%20FindMeACar%20Search&amp;body=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%2C%20In-depth%20%C2%A350%20or%20Premium%20%C2%A3150)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you.">
-                 Begin my search (Email)
-              </a>
+              <button class="btn btn-primary"
+                      onclick="startSearch('whatsapp','basic')">
+                Begin basic search – WhatsApp &amp; pay
+              </button>
+              <button class="btn btn-secondary"
+                      onclick="startSearch('email','basic')">
+                Begin basic search – Email &amp; pay
+              </button>
             </div>
 
-            <!-- STEP 2 -->
-            <div style="margin-top:14px;margin-bottom:4px;" class="info-title">
-              Step 2 – Choose your service &amp; pay securely
+            <!-- IN-DEPTH -->
+            <div style="margin-top:16px;" class="info-title">
+              In-depth search – £50
             </div>
-            <p>
-              Once you’ve sent your details, choose the service level that suits you and complete payment via Stripe.
-              We’ll match your payment to your brief and begin your search.
+            <p style="margin-bottom:6px;">
+              More options, tighter filtering and deeper searching.
             </p>
-
             <div class="btn-row">
-              <a class="btn btn-primary btn-stripe"
-                 href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
-                 target="_blank" rel="noopener">
-                 Pay £30 – Basic search
-              </a>
-
-              <a class="btn btn-secondary btn-stripe"
-                 href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
-                 target="_blank" rel="noopener">
-                 Pay £50 – In-depth search
-              </a>
+              <button class="btn btn-primary"
+                      onclick="startSearch('whatsapp','indepth')">
+                Begin in-depth search – WhatsApp &amp; pay
+              </button>
+              <button class="btn btn-secondary"
+                      onclick="startSearch('email','indepth')">
+                Begin in-depth search – Email &amp; pay
+              </button>
             </div>
 
-            <div class="btn-row" style="margin-top:8px;">
-              <a class="btn btn-secondary btn-stripe"
-                 href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
-                 target="_blank" rel="noopener">
-                 Pay £150 – Premium concierge search
-              </a>
+            <!-- PREMIUM -->
+            <div style="margin-top:16px;" class="info-title">
+              Premium concierge – £150
+            </div>
+            <p style="margin-bottom:6px;">
+              Priority search, personalised guidance, negotiation support and scam protection checks.
+            </p>
+            <div class="btn-row">
+              <button class="btn btn-primary"
+                      onclick="startSearch('whatsapp','premium')">
+                Begin premium search – WhatsApp &amp; pay
+              </button>
+              <button class="btn btn-secondary"
+                      onclick="startSearch('email','premium')">
+                Begin premium search – Email &amp; pay
+              </button>
             </div>
 
             <div class="chips">
-              <div class="chip">● Payment handled securely by Stripe</div>
-              <div class="chip">● Instant email receipt &amp; payment reference</div>
-              <div class="chip">● We’ll confirm your FindMeACar search reference after payment</div>
+              <div class="chip">● Stripe handles your payment securely</div>
+              <div class="chip">● We match your payment to your search reference</div>
+              <div class="chip">● Initial results usually within 24 hours</div>
             </div>
           </div>
         </section>
@@ -763,7 +748,7 @@
           </div>
         </section>
 
-        <!-- Terms -->
+        <!-- TERMS -->
         <section class="section">
           <div class="section-header">
             <h2 class="section-title">Terms &amp; disclaimer</h2>
@@ -792,7 +777,6 @@
           </div>
         </section>
 
-        <!-- Footer -->
         <footer class="footer">
           <span>By <strong>FindMeACar</strong></span>
           <span></span>
@@ -800,7 +784,7 @@
 
       </main>
 
-      <!-- Right side card: Service + subscription -->
+      <!-- RIGHT: SERVICE + SUBSCRIPTION -->
       <aside class="side-card">
         <div class="side-inner">
           <div class="info-title">The service</div>
@@ -842,5 +826,66 @@
 
     </div>
   </div>
+
+  <!-- COMBINED FLOW LOGIC -->
+  <script>
+    const STRIPE_LINKS = {
+      basic: "https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200",
+      indepth: "https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201",
+      premium: "https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
+    };
+
+    const SERVICE_LABELS = {
+      basic: "Basic search (£30)",
+      indepth: "In-depth search (£50)",
+      premium: "Premium concierge search (£150)"
+    };
+
+    function buildMessage(planKey) {
+      const label = SERVICE_LABELS[planKey] || "car search service";
+
+      return (
+        "Hi FindMeACar,\n\n" +
+        "I'd like to begin a car search. My details are:\n\n" +
+        "Full name:\n" +
+        "Phone number:\n" +
+        "Preferred contact method (WhatsApp / Email):\n" +
+        "Budget (£):\n" +
+        "Maximum mileage:\n" +
+        "Fuel type:\n" +
+        "Gearbox (manual or automatic):\n" +
+        "Body style:\n" +
+        "Preferred makes or models (if any):\n" +
+        "Location and travel distance:\n" +
+        "Ideal buying timeframe:\n\n" +
+        "I would like to use the " + label + ".\n\n" +
+        "I understand payment is handled securely via Stripe. " +
+        "Once my payment has gone through, please confirm my FindMeACar search reference number.\n\n" +
+        "Thank you."
+      );
+    }
+
+    function startSearch(channel, planKey) {
+      const stripeUrl = STRIPE_LINKS[planKey];
+      const message = encodeURIComponent(buildMessage(planKey));
+
+      // 1) Open Stripe payment in a new tab
+      if (stripeUrl) {
+        window.open(stripeUrl, "_blank", "noopener");
+      }
+
+      // 2) Open WhatsApp or Email with the template
+      if (channel === "whatsapp") {
+        const waUrl = "https://wa.me/447958452026?text=" + message;
+        window.location.href = waUrl;
+      } else {
+        const mailUrl =
+          "mailto:findmeacar-uk@outlook.com" +
+          "?subject=" + encodeURIComponent("Begin my FindMeACar search") +
+          "&body=" + message;
+        window.location.href = mailUrl;
+      }
+    }
+  </script>
 </body>
 </html>
