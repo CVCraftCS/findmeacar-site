@@ -10,7 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="FindMeACar" />
 
-  <!-- Embedded SVG app icon -->
+  <!-- App icon -->
   <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230ea5e9'/%3E%3Cstop offset='0.5' stop-color='%2322c55e'/%3E%3Cstop offset='1' stop-color='%23facc15'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='32' y='32' width='448' height='448' rx='96' fill='%23020617'/%3E%3Crect x='64' y='64' width='384' height='384' rx='80' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' fill='%23020617' font-family='system-ui' font-size='140' font-weight='700' letter-spacing='20'%3EFM%3C/text%3E%3Ctext x='50%25' y='76%25' text-anchor='middle' fill='%23020617' font-family='system-ui' font-size='34' font-weight='600' letter-spacing='8'%3EFindMeACar%3C/text%3E%3C/svg%3E" />
 
@@ -21,6 +21,7 @@
       --accent-soft: rgba(250, 204, 21, 0.12);
       --text: #f9fafb;
       --muted: #9ca3af;
+      --card-bg: #050816;
     }
 
     * {
@@ -30,10 +31,10 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* PAGE BACKGROUND WITH VISIBLE CAR SILHOUETTE */
+    /* PAGE BACKGROUND WITH CAR SILHOUETTE */
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827, #020617 50%, #000);
+      background: radial-gradient(circle at top, #111827, #020617 55%, #000);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -47,28 +48,28 @@
       content: "";
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cpath d='M150 350 L300 250 H900 L1050 350 H1120 V420 H1070 A80 80 0 0 1 930 420 A80 80 0 0 1 790 420 H410 A80 80 0 0 1 270 420 A80 80 0 0 1 150 420 Z' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10' stroke-linejoin='round'/%3E%3Ccircle cx='380' cy='420' r='70' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10'/%3E%3Ccircle cx='820' cy='420' r='70' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cpath d='M150 350 L300 250 H900 L1050 350 H1120 V420 H1070 A80 80 0 0 1 930 420 A80 80 0 0 1 790 420 H410 A80 80 0 0 1 270 420 A80 80 0 0 1 150 420 Z' fill='none' stroke='%23e5e7eb' stroke-width='20' stroke-opacity='0.18' stroke-linejoin='round'/%3E%3Ccircle cx='380' cy='420' r='70' fill='none' stroke='%23e5e7eb' stroke-width='20' stroke-opacity='0.18'/%3E%3Ccircle cx='820' cy='420' r='70' fill='none' stroke='%23e5e7eb' stroke-width='20' stroke-opacity='0.18'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: center bottom;
-      background-size: 85% auto;
+      background-size: 90% auto;
       pointer-events: none;
       z-index: 0;
-      opacity: 1;
     }
 
     .app {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 480px;
-      border-radius: 24px;
-      background: #020617d9;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: 0 24px 80px rgba(15, 23, 42, 0.9);
-      padding: 20px 18px 22px;
+      max-width: 520px;
+      border-radius: 26px;
+      background: rgba(2, 6, 23, 0.94);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 26px 90px rgba(15, 23, 42, 0.95);
+      padding: 22px 18px 22px;
       display: flex;
       flex-direction: column;
       gap: 18px;
+      backdrop-filter: blur(8px);
     }
 
     .status-bar {
@@ -77,7 +78,7 @@
       align-items: center;
       font-size: 11px;
       color: var(--muted);
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .pill {
@@ -86,8 +87,8 @@
       gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: #0f172a;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: #020617;
       font-size: 11px;
     }
 
@@ -101,50 +102,51 @@
 
     .hero {
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: center;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .hero-avatar {
-      width: 64px;
-      height: 64px;
+      width: 70px;
+      height: 70px;
       border-radius: 24px;
       background: radial-gradient(circle at top, #0ea5e9, #22c55e, #0f172a);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 28px rgba(34, 197, 94, 0.7);
     }
 
     .hero-avatar-main {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.3em;
       text-transform: uppercase;
     }
 
     .hero-avatar-sub {
-      font-size: 7.5px;
+      font-size: 8px;
       letter-spacing: 0.15em;
-      opacity: 0.85;
+      opacity: 0.9;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .hero-main {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
 
     .hero-title {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 0.02em;
       display: flex;
+      flex-wrap: wrap;
       gap: 6px;
     }
 
@@ -157,66 +159,68 @@
     .hero-subtitle {
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.35;
-      max-width: 280px;
+      line-height: 1.45;
+      max-width: 340px;
     }
 
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .hero-tag {
       font-size: 11px;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      border: 1px solid rgba(148, 163, 184, 0.45);
       color: var(--muted);
+      background: rgba(15, 23, 42, 0.95);
     }
 
     .section {
       margin-top: 6px;
-      padding: 12px;
+      padding: 13px 12px 12px;
       border-radius: 18px;
-      background: #020617ef;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+      background: var(--card-bg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 6px;
+      align-items: center;
+      margin-bottom: 7px;
     }
 
     .section-title {
       font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.13em;
       color: #9ca3af;
     }
 
     .section-pill {
       font-size: 10px;
-      padding: 3px 7px;
+      padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: #0f172a;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
       color: var(--muted);
     }
 
     .section-body {
       font-size: 13px;
       color: #e5e7eb;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     .steps {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
       margin-top: 8px;
     }
 
@@ -228,14 +232,24 @@
     }
 
     .step-badge {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      border: 1px solid rgba(250, 204, 21, 0.7);
       font-size: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: radial-gradient(circle at top, #facc15, #eab308);
+      color: #111827;
+      flex-shrink: 0;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 12px;
+      color: #f9fafb;
+      margin-bottom: 1px;
     }
 
     .cta-card {
@@ -243,22 +257,26 @@
       padding: 10px;
       border-radius: 16px;
       background: var(--accent-soft);
-      border: 1px solid rgba(250, 204, 21, 0.5);
+      border: 1px solid rgba(250, 204, 21, 0.7);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
     }
 
     .cta-text {
       font-size: 12px;
       color: var(--muted);
-      max-width: 70%;
+      max-width: 72%;
     }
 
     .cta-title {
       font-size: 11px;
       color: var(--accent);
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
     }
 
     .btn-row {
@@ -275,11 +293,13 @@
       border-radius: 999px;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       font-weight: 500;
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease, filter 0.08s ease;
     }
 
     .btn-primary {
@@ -289,18 +309,28 @@
     }
 
     .btn-secondary {
-      background: #0f172a;
+      background: #020617;
       color: #e5e7eb;
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 0 26px rgba(15, 23, 42, 0.9);
     }
 
     .faq-list {
       margin-top: 6px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
       font-size: 12px;
       color: #d1d5db;
+    }
+
+    .faq-list strong {
+      color: #f9fafb;
     }
 
     .chips {
@@ -312,10 +342,11 @@
 
     .chip {
       font-size: 11px;
-      padding: 4px 9px;
+      padding: 4px 10px;
       border-radius: 999px;
-      background: #0f172a;
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
     }
 
     .footer {
@@ -324,10 +355,17 @@
       color: var(--muted);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     .footer strong {
       color: var(--accent);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 28px; }
+      .app { padding: 24px 22px; }
+      .hero-subtitle { max-width: 360px; }
     }
   </style>
 </head>
@@ -447,13 +485,13 @@
 
         <div class="btn-row">
           <a class="btn btn-primary"
-             href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0APhone%20number%3A%0APreferred%20contact%20method%20%28WhatsApp%20%2F%20Email%29%3A%0ABudget%20%28%C2%A3%29%3A%0AMaximum%20mileage%3A%0AFuel%20type%3A%0AGearbox%20%28manual%2Fautomatic%29%3A%0ABody%20style%3A%0APreferred%20makes%2Fmodels%20%28if%20any%29%3A%0ALocation%20and%20travel%20distance%3A%0AIdeal%20buying%20timeframe%3A%0AService%20level%20%28Basic%20%C2%A330%20%2F%20In-depth%20%C2%A350%29%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
+             href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%20or%20In-depth%20%C2%A350)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
              target="_blank" rel="noopener">
              Begin my search (WhatsApp)
           </a>
 
           <a class="btn btn-secondary"
-             href="mailto:nelson1987@live.co.uk?subject=Begin%20my%20FindMeACar%20Search&body=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0APhone%20number%3A%0APreferred%20contact%20method%20%28WhatsApp%20%2F%20Email%29%3A%0ABudget%20%28%C2%A3%29%3A%0AMaximum%20mileage%3A%0AFuel%20type%3A%0AGearbox%20%28manual%2Fautomatic%29%3A%0ABody%20style%3A%0APreferred%20makes%2Fmodels%20%28if%20any%29%3A%0ALocation%20and%20travel%20distance%3A%0AIdeal%20buying%20timeframe%3A%0AService%20level%20%28Basic%20%C2%A330%20%2F%20In-depth%20%C2%A350%29%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you.">
+             href="mailto:nelson1987@live.co.uk?subject=Begin%20my%20FindMeACar%20Search&amp;body=Hi%20FindMeACar%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%20or%20automatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%20or%20models%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%20or%20In-depth%20%C2%A350)%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you.">
              Begin my search (Email)
           </a>
         </div>
