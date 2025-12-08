@@ -4,7 +4,29 @@
   <meta charset="UTF-8" />
   <title>FindMeACar-UK – Car Finder Service</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="FindMeACar-UK – an independent UK car-finding service that sources tailored used and nearly-new car options to match your brief."
+  />
+
   <style>
+    :root {
+      --bg: #050816;
+      --card-bg: #0c1220;
+      --card-bg-soft: #0f172a;
+      --accent: #ffd54a;
+      --accent-soft: #ffed9c;
+      --accent-glow: 0 0 18px rgba(255, 213, 74, 0.35);
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --text-muted: #6b7280;
+      --border-subtle: #1f2937;
+      --pill-bg: #111827;
+      --pill-text: #d1d5db;
+      --danger: #f97373;
+      --success: #4ade80;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -12,92 +34,100 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1b2940 0, #050814 55%, #000000 100%);
-      color: #f5f7ff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text-main);
       min-height: 100vh;
-      padding: 32px 12px;
-      display: flex;
-      justify-content: center;
     }
 
-    .page {
-      max-width: 1200px;
-      width: 100%;
-      background: radial-gradient(circle at top left, #101726, #050814 55%, #02030a 100%);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8);
-      padding: 28px 28px 40px;
+    .page-wrap {
+      max-width: 1180px;
+      margin: 32px auto 40px;
+      padding: 0 16px 32px;
+    }
+
+    .shell {
+      background: radial-gradient(circle at top left, #020617 0, #020617 40%, #000 100%);
+      border-radius: 28px;
+      padding: 24px 28px 28px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow:
+        0 28px 80px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
       position: relative;
       overflow: hidden;
     }
 
-    .page::before {
+    .shell::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -40%;
       background:
-        radial-gradient(circle at -10% 20%, rgba(0, 255, 170, 0.06), transparent 50%),
-        radial-gradient(circle at 110% 80%, rgba(255, 215, 0, 0.05), transparent 55%);
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.06), transparent 55%),
+        radial-gradient(circle at 100% 30%, rgba(251, 191, 36, 0.09), transparent 50%),
+        radial-gradient(circle at 0 100%, rgba(129, 140, 248, 0.09), transparent 50%);
+      opacity: 0.9;
       pointer-events: none;
+      mix-blend-mode: screen;
     }
 
-    .page-inner {
+    .shell-inner {
       position: relative;
       z-index: 1;
     }
 
-    /* Header row */
-
-    .header-row {
+    .shell-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      gap: 12px;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(0, 255, 170, 0.2), rgba(0, 255, 170, 0.06));
-      border: 1px solid rgba(0, 255, 170, 0.4);
-      font-size: 12px;
+      background: linear-gradient(135deg, #022c22, #064e3b);
+      box-shadow:
+        0 0 0 1px rgba(16, 185, 129, 0.3),
+        0 0 14px rgba(16, 185, 129, 0.55);
+      font-size: 13px;
+      color: #bbf7d0;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #c7ffea;
+      font-weight: 600;
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
-      background: #42f5b3;
-      box-shadow: 0 0 10px #42f5b3;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
     }
 
-    .header-right {
-      font-size: 11px;
-      color: #9ba4c7;
+    .top-right-text {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
-    /* Top three-column layout */
-
-    .top-grid {
+    .columns {
       display: grid;
-      grid-template-columns: 260px minmax(0, 1.7fr) 260px;
-      gap: 20px;
-      margin-bottom: 28px;
+      grid-template-columns: 1.15fr 1.6fr 1.1fr;
+      gap: 18px;
+      margin-bottom: 22px;
     }
 
     .card {
-      background: radial-gradient(circle at top, #111827 0, #050814 70%);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 18px 18px 20px;
+      background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 18px 18px 18px;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.8);
       position: relative;
       overflow: hidden;
     }
@@ -105,9 +135,11 @@
     .card::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 60%);
-      opacity: 0.6;
+      inset: -16%;
+      background:
+        radial-gradient(circle at top left, rgba(251, 191, 36, 0.06), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.05), transparent 55%);
+      opacity: 0.9;
       pointer-events: none;
     }
 
@@ -116,822 +148,913 @@
       z-index: 1;
     }
 
-    .card-title {
-      font-size: 13px;
+    .card h2,
+    .card h3,
+    .card h4 {
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ba4c7;
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .card h2 span,
+    .card h3 span {
+      color: #e5e7eb;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-soft);
       margin-bottom: 10px;
     }
 
-    .card-title span {
-      color: #f9fafb;
-    }
-
-    .card-body p {
-      font-size: 13px;
-      line-height: 1.5;
-      color: #d3def7;
-      margin-bottom: 10px;
-    }
-
-    .card-body p + p {
-      margin-top: 6px;
-    }
-
-    .highlight-text {
-      font-size: 13px;
-      color: #ffe58a;
-      font-weight: 500;
-      margin-top: 6px;
-    }
-
-    ul.bullet-list {
-      margin-top: 10px;
-      padding-left: 18px;
-      font-size: 12px;
-      color: #c5d2f5;
-      line-height: 1.5;
-    }
-
-    ul.bullet-list li + li {
-      margin-top: 4px;
-    }
-
-    .small-label {
-      font-size: 11px;
-      color: #9ba4c7;
-      margin-top: 10px;
-      margin-bottom: 6px;
-    }
-
-    /* Main hero column */
-
-    .hero-header {
+    .brand-row {
       display: flex;
+      gap: 16px;
       align-items: center;
-      gap: 14px;
       margin-bottom: 10px;
     }
 
-    .logo-circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      background: radial-gradient(circle at 30% 0, #5cffd0 0, #008f5a 55%, #00352a 100%);
+    .brand-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 30% 20%, #bbf7d0 0, #22c55e 28%, #064e3b 80%);
       box-shadow:
-        0 0 18px rgba(95, 255, 208, 0.8),
-        0 0 40px rgba(2, 255, 163, 0.7);
+        0 0 0 1px rgba(16, 185, 129, 0.35),
+        0 22px 55px rgba(5, 46, 22, 0.9);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      color: #eafff8;
+      justify-content: center;
+      flex-direction: column;
+      color: #ecfdf5;
       font-weight: 700;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      text-align: center;
+      font-size: 12px;
     }
 
-    .logo-circle span:first-child {
-      font-size: 16px;
+    .brand-avatar span:first-child {
+      font-size: 13px;
       letter-spacing: 0.18em;
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .brand-name {
-      font-size: 22px;
-      font-weight: 700;
-      color: #4ef5b3;
-    }
-
-    .brand-tagline {
-      font-size: 12px;
-      color: #c5d2f5;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-      margin-bottom: 8px;
-    }
-
-    .chip {
+    .brand-avatar span:last-child {
       font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #e5edff;
+      opacity: 0.8;
     }
 
-    .chip.primary {
-      border-color: rgba(74, 222, 128, 0.8);
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(21, 128, 61, 0.2));
-      color: #eafff6;
-    }
-
-    .small-note {
-      font-size: 10px;
-      color: #9ba4c7;
-      text-align: right;
-    }
-
-    /* How it works / finder fees in main column */
-
-    .how-it-works {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-    }
-
-    .how-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+    .brand-text h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #f9fafb;
       margin-bottom: 4px;
     }
 
-    .how-title {
+    .brand-text h1 span {
+      color: #22c55e;
+    }
+
+    .brand-text p {
       font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ba4c7;
-    }
-
-    .how-steps-label {
-      font-size: 11px;
-      color: #9ba4c7;
-    }
-
-    .steps-list {
-      margin-top: 8px;
-      display: grid;
-      gap: 8px;
-      font-size: 12px;
-      color: #e5edff;
-    }
-
-    .step-line {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .step-number {
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #ffe58a 0, #fbbf24 40%, #b45309 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: #111827;
-      box-shadow: 0 0 10px rgba(250, 204, 21, 0.9);
-    }
-
-    .step-text strong {
-      font-weight: 600;
-    }
-
-    .step-text {
-      font-size: 12px;
-      color: #d3def7;
-      line-height: 1.5;
-    }
-
-    .fees-card {
-      margin-top: 12px;
-      padding: 10px 12px 12px;
-      border-radius: 14px;
-      background: radial-gradient(circle at top, rgba(250, 204, 21, 0.18), rgba(15, 23, 42, 0.98) 55%);
-      border: 1px solid rgba(250, 204, 21, 0.5);
-    }
-
-    .fees-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #facc15;
+      color: var(--text-soft);
       margin-bottom: 6px;
     }
 
-    .fees-grid {
-      display: grid;
-      gap: 8px;
-      font-size: 12px;
-      color: #111827;
-    }
-
-    .fee-line {
+    .tag-row {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      background: rgba(15, 23, 42, 0.12);
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .tag-pill {
+      padding: 4px 10px;
       border-radius: 999px;
-      padding: 4px 8px;
-      color: #111827;
-    }
-
-    .fee-name {
-      font-weight: 600;
-      color: #0f172a;
-    }
-
-    .fee-price {
-      font-weight: 600;
-      color: #1f2937;
-    }
-
-    .fee-note {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #d1d5db;
       font-size: 11px;
-      color: #0b1120;
-      opacity: 0.9;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .list {
+      list-style: none;
       margin-top: 4px;
     }
 
-    .fees-buttons-row {
+    .list li {
       display: flex;
-      flex-wrap: wrap;
+      align-items: flex-start;
       gap: 8px;
-      margin-top: 10px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--text-soft);
     }
 
-    /* Buttons */
+    .list li::before {
+      content: "•";
+      color: var(--accent-soft);
+      margin-top: 1px;
+    }
 
-    .btn {
-      display: inline-flex;
+    .how-steps {
+      margin-top: 6px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+
+    .step-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fef9c3 0, #facc15 40%, #b45309 100%);
+      box-shadow:
+        0 0 0 1px rgba(250, 204, 21, 0.55),
+        0 0 12px rgba(234, 179, 8, 0.9);
+      display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 999px;
+      color: #0f172a;
       font-size: 12px;
-      font-weight: 600;
-      border: none;
-      text-decoration: none;
-      cursor: pointer;
-      padding: 9px 16px;
-      transition: all 0.18s ease;
-      white-space: nowrap;
+      font-weight: 700;
     }
 
-    .btn-primary {
-      background: radial-gradient(circle at 30% 0, #ffe58a 0, #fbbf24 45%, #f59e0b 100%);
-      color: #111827;
-      box-shadow: 0 10px 22px rgba(180, 83, 9, 0.5);
+    .step-body strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 1px;
+      color: #e5e7eb;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 26px rgba(180, 83, 9, 0.7);
-      filter: brightness(1.05);
+    .step-body span {
+      display: block;
+      font-size: 13px;
+      color: var(--text-soft);
     }
 
-    .btn-secondary {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: #e5edff;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: rgba(248, 250, 252, 0.8);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: #e5edff;
-    }
-
-    .btn-ghost:hover {
-      border-color: rgba(248, 250, 252, 0.9);
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .btn-small {
+    .steps-badge {
+      position: absolute;
+      top: 14px;
+      right: 18px;
       font-size: 11px;
-      padding: 7px 14px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
-    /* Contact buttons row (WhatsApp / Email) */
-
-    .contact-row {
-      display: flex;
-      gap: 10px;
+    .finder-card {
       margin-top: 14px;
-    }
-
-    .contact-row .btn {
-      flex: 1 1 0;
-    }
-
-    /* Advertise card */
-
-    .advert-card .card-body p {
-      font-size: 12px;
-    }
-
-    .advert-pricing {
-      font-size: 12px;
-      color: #e5edff;
-      margin-top: 8px;
-    }
-
-    .advert-pricing strong {
-      color: #facc15;
-    }
-
-    .advert-note {
-      margin-top: 8px;
-      font-size: 11px;
-      color: #9ba4c7;
-    }
-
-    .advert-contact {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #e5edff;
-    }
-
-    .advert-highlight {
-      margin-top: 8px;
-      font-size: 11px;
-      color: #facc15;
-    }
-
-    /* Begin your search section */
-
-    .begin-section {
-      margin-top: 26px;
-      padding: 18px 18px 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 1));
+      background:
+        linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.02)),
+        linear-gradient(135deg, #020617, #020617);
+      border-radius: 18px;
+      border: 1px solid rgba(234, 179, 8, 0.55);
+      box-shadow:
+        0 0 0 1px rgba(251, 191, 36, 0.35),
+        0 26px 65px rgba(15, 23, 42, 0.95);
+      padding: 12px 14px 14px;
       position: relative;
       overflow: hidden;
     }
 
-    .begin-section::before {
-      content: "Start";
+    .finder-card::before {
+      content: "";
       position: absolute;
-      top: 10px;
-      right: 18px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: rgba(148, 163, 184, 0.7);
+      inset: -30%;
+      background:
+        radial-gradient(circle at 0 0, rgba(250, 250, 250, 0.12), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(251, 191, 36, 0.18), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+      mix-blend-mode: screen;
     }
 
-    .begin-inner {
+    .finder-card-inner {
       position: relative;
       z-index: 1;
     }
 
-    .begin-title {
-      font-size: 13px;
+    .finder-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .finder-title-row h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #111827;
+    }
+
+    .finder-title-row span {
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #9ba4c7;
-      margin-bottom: 8px;
+      color: #4b5563;
     }
 
-    .begin-body p {
-      font-size: 12px;
-      color: #d3def7;
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .begin-buttons {
-      display: flex;
+    .finder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      margin: 12px 0 6px;
-    }
-
-    .begin-buttons .btn {
-      flex: 1 1 0;
-    }
-
-    .begin-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
       margin-top: 6px;
     }
 
-    .begin-tag {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
+    .finder-plan {
       background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #cbd5f5;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 10px 10px 11px;
+      font-size: 12px;
+      color: var(--text-soft);
     }
 
-    /* Good to know & terms */
+    .finder-plan strong {
+      display: block;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    .finder-price {
+      font-weight: 600;
+      color: var(--accent-soft);
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .finder-plan p {
+      font-size: 12px;
+      margin: 0 0 2px;
+    }
+
+    .finder-plan small {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .finder-buttons-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .finder-help-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .finder-help-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      color: #d1d5db;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .finder-help-pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #bae6fd;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease,
+        color 0.15s ease, opacity 0.15s ease;
+      user-select: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 30% 0, #fef9c3 0, #facc15 40%, #b45309 100%);
+      color: #111827;
+      box-shadow:
+        0 0 0 1px rgba(250, 204, 21, 0.6),
+        0 14px 35px rgba(234, 179, 8, 0.9);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(250, 204, 21, 0.8),
+        0 18px 40px rgba(234, 179, 8, 1);
+      filter: brightness(1.03);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #020617, #020617);
+      color: #e5e7eb;
+      box-shadow:
+        0 0 0 1px rgba(55, 65, 81, 0.95),
+        0 14px 30px rgba(15, 23, 42, 1);
+    }
+
+    .btn-secondary:hover {
+      background: radial-gradient(circle at top, #020617 0, #020617 55%, #020617 100%);
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(75, 85, 99, 1),
+        0 18px 40px rgba(0, 0, 0, 1);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .section {
+      margin-top: 20px;
+      background: radial-gradient(circle at top, #020617 0, #020617 50%, #020617 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 18px 18px 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.08), transparent 50%),
+        radial-gradient(circle at 100% 0, rgba(251, 191, 36, 0.08), transparent 50%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-header-row h3 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .section-header-row span {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section p {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .section-cta-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .section-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .section-badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.96);
+      color: #d1d5db;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
 
     .bottom-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.4fr);
+      grid-template-columns: 1.15fr 1.6fr;
       gap: 18px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
-    .faq-title,
-    .terms-title {
-      font-size: 13px;
+    .faq-title {
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ba4c7;
+      color: #9ca3af;
       margin-bottom: 8px;
     }
 
-    .faq-block p,
-    .terms-block p {
+    .faq-item {
+      margin-bottom: 8px;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 1px;
+    }
+
+    .faq-item span {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .terms-text p {
       font-size: 12px;
-      line-height: 1.55;
-      color: #d3def7;
-      margin-bottom: 6px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 8px;
     }
 
-    .faq-block p strong {
-      color: #e5edff;
+    .terms-text p.important {
+      color: #fecaca;
     }
 
-    .terms-important {
-      display: inline-block;
-      margin-top: 4px;
+    .footer-line {
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #facc15;
+      color: var(--text-muted);
+      margin-top: 6px;
     }
 
-    .footer-note {
-      margin-top: 14px;
-      font-size: 10px;
-      color: #6b7280;
-    }
-
-    /* Responsive */
-
-    @media (max-width: 1024px) {
-      .top-grid {
+    @media (max-width: 960px) {
+      .columns {
         grid-template-columns: 1fr;
       }
+
       .bottom-grid {
         grid-template-columns: 1fr;
       }
-      .header-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+
+      .finder-grid {
+        grid-template-columns: 1fr;
       }
-      .small-note {
-        text-align: left;
+
+      .finder-buttons-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-cta-row {
+        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 640px) {
-      body {
-        padding: 16px 8px;
+      .shell {
+        padding: 18px 16px 22px;
+        border-radius: 22px;
       }
-      .page {
-        padding: 18px 14px 26px;
+
+      .brand-row {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .brand-avatar {
+        width: 54px;
+        height: 54px;
         border-radius: 18px;
       }
-      .contact-row,
-      .begin-buttons {
-        flex-direction: column;
+
+      .brand-text h1 {
+        font-size: 22px;
       }
-      .fees-buttons-row {
-        flex-direction: column;
+
+      .section {
+        padding: 16px 14px 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="page-inner">
-      <!-- Header -->
-      <div class="header-row">
-        <div class="status-pill">
-          <span class="status-dot"></span>
-          FindMeACar-UK Online
+  <div class="page-wrap">
+    <div class="shell">
+      <div class="shell-inner">
+        <div class="shell-top-row">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            FINDMEACAR-UK ONLINE
+          </div>
+          <div class="top-right-text">Typical response within 24 hours</div>
         </div>
-        <div class="small-note">
-          Typical response within 24 hours
-        </div>
-      </div>
 
-      <!-- Top three-column layout -->
-      <div class="top-grid">
-        <!-- ABOUT COLUMN -->
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-title">About <span>FindMeACar-UK</span></div>
-            <div class="card-body">
+        <!-- MAIN COLUMNS -->
+        <div class="columns">
+          <!-- LEFT: ABOUT -->
+          <section class="card">
+            <div class="card-inner">
+              <h2>ABOUT <span>FINDMEACAR-UK</span></h2>
               <p>
-                FindMeACar-UK is a small, independent car-finding service designed to save you time and stress when looking for your next vehicle.
+                FindMeACar-UK is a small, independent car-finding service designed to save you
+                time and stress when looking for your next vehicle.
               </p>
               <p>
-                We use years of experience buying and sourcing cars to narrow down the options and send you listings that actually fit what you need – not just whatever happens to be at the top of a search page.
+                We use years of experience buying and sourcing cars to narrow down the options and send you listings that actually
+                fit what you need – not just whatever happens to be at the top of a search page.
               </p>
-              <p class="highlight-text">
-                You stay in control – we just bring the right cars to your attention.
+              <p>
+                <strong>You stay in control – we just bring the right cars to your attention.</strong>
               </p>
 
-              <div class="small-label">Service approach</div>
-              <ul class="bullet-list">
+              <h3 style="margin-top: 14px;">SERVICE APPROACH</h3>
+              <ul class="list">
                 <li>Independent and transparent</li>
                 <li>No pressure, no upselling</li>
                 <li>Clear communication and expectations</li>
                 <li>We respect your time and budget</li>
               </ul>
             </div>
-          </div>
+          </section>
+
+          <!-- CENTRE: HERO + HOW IT WORKS + FINDER'S FEE -->
+          <section class="card">
+            <div class="card-inner">
+              <div class="brand-row">
+                <div class="brand-avatar">
+                  <span>FM</span>
+                  <span>FINDMEACAR</span>
+                </div>
+                <div class="brand-text">
+                  <h1>FindMeACar-<span>UK</span></h1>
+                  <p>
+                    Designed to free up your time, backed by years of experience sourcing and purchasing vehicles across the UK.
+                  </p>
+                  <div class="tag-row">
+                    <div class="tag-pill">
+                      <span class="tag-pill-dot"></span> Save time searching
+                    </div>
+                    <div class="tag-pill">
+                      <span class="tag-pill-dot"></span> Used &amp; nearly new cars
+                    </div>
+                    <div class="tag-pill">
+                      <span class="tag-pill-dot"></span> Straight to your phone
+                    </div>
+                    <div class="tag-pill">
+                      <span class="tag-pill-dot"></span> Independent &amp; transparent
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <h3>HOW IT WORKS</h3>
+                <div class="steps-badge">3 steps</div>
+
+                <div class="how-steps">
+                  <div class="step-row">
+                    <div class="step-index">1</div>
+                    <div class="step-body">
+                      <strong>Tell us what you need</strong>
+                      <span>
+                        Budget, mileage preferences, fuel type, gearbox, body style, daily use and any must-have features.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="step-row">
+                    <div class="step-index">2</div>
+                    <div class="step-body">
+                      <strong>Choose your service level</strong>
+                      <span>
+                        From a simple shortlist to more in-depth, tailored searching.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="step-row">
+                    <div class="step-index">3</div>
+                    <div class="step-body">
+                      <strong>Receive tailored car links</strong>
+                      <span>
+                        We send matching listings directly to you via WhatsApp or email.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FINDER'S FEE -->
+              <div class="finder-card">
+                <div class="finder-card-inner">
+                  <div class="finder-title-row">
+                    <h3>FINDER’S FEE</h3>
+                    <span>Paid services</span>
+                  </div>
+
+                  <div class="finder-grid">
+                    <div class="finder-plan">
+                      <strong>£30 – Basic search</strong>
+                      <div class="finder-price">Focused shortlist</div>
+                      <p>A shortlist of suitable cars that match your brief.</p>
+                      <small>Ideal if you already have a good idea of what you want.</small>
+                    </div>
+
+                    <div class="finder-plan">
+                      <strong>£50 – In-depth search</strong>
+                      <div class="finder-price">More options &amp; tighter filtering</div>
+                      <p>
+                        A more detailed, tailored search with additional options and closer filtering to your brief.
+                      </p>
+                      <small>Helpful if you’d like more choice and refinement.</small>
+                    </div>
+
+                    <div class="finder-plan">
+                      <strong>Premium search</strong>
+                      <div class="finder-price">From £150</div>
+                      <p>
+                        For more complex or urgent requirements – discussed in advance so we can tailor the service.
+                      </p>
+                      <small>Great if you want a more hands-on, priority search.</small>
+                    </div>
+                  </div>
+
+                  <!-- STRIPE PAYMENT BUTTONS -->
+                  <div class="finder-buttons-row">
+                    <a
+                      class="btn btn-primary btn-full"
+                      href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Pay £30 – Basic (Stripe)
+                    </a>
+                    <a
+                      class="btn btn-primary btn-full"
+                      href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Pay £50 – In-depth (Stripe)
+                    </a>
+                    <a
+                      class="btn btn-primary btn-full"
+                      href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Pay £150 – Premium (Stripe)
+                    </a>
+                    <a
+                      class="btn btn-secondary btn-full"
+                      href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Subscription – Stripe
+                    </a>
+                  </div>
+
+                  <div class="finder-help-row">
+                    <div class="finder-help-pill">
+                      <span></span> Payment handled securely by Stripe
+                    </div>
+                    <div class="finder-help-pill">
+                      <span></span> Instant email receipt &amp; payment reference
+                    </div>
+                    <div class="finder-help-pill">
+                      <span></span> We’ll confirm your FindMeACar search reference after payment
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CONTACT BUTTONS -->
+              <div class="contact-row">
+                <a
+                  class="btn btn-primary btn-full"
+                  href="https://wa.me/447958452026?text=Hi%20FindMeACar%2CUK%2C%20I%27d%20like%20to%20begin%20a%20car%20search.%0A%0AMy%20details%20are%3A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(petrol%2C%20diesel%2C%20hybrid%2C%20EV%2C%20open%20to%20suggestions)%3A%20%0AGearbox%20(manual%2C%20automatic%2C%20either)%3A%20%0ABody%20style%20(hatchback%2C%20SUV%2C%20estate%2C%20saloon%2C%20other)%3A%20%0AMain%20use%20(commuting%2C%20family%2C%20mixed%2C%20business%2C%20other)%3A%20%0AAny%20must-have%20features%20(e.g.%20Apple%20CarPlay%2C%20A%2FC%2C%20parking%20sensors)%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3F%20%0AAnything%20else%20you%27d%20like%20us%20to%20know%3F%20%0A%0AOnce%20you%27ve%20confirmed%20your%20service%20level%20(%C2%A330%20Basic%2C%20%C2%A350%20In-depth%2C%20or%20Premium)%2C%20we%27ll%20send%20payment%20details%20and%20your%20reference%20number."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Contact us on WhatsApp
+                </a>
+
+                <a
+                  class="btn btn-secondary btn-full"
+                  href="mailto:findmeacar-uk@outlook.com?subject=FindMeACar-UK%20search%20enquiry&body=Hi%20FindMeACar-UK%2C%0A%0AI%E2%80%99d%20like%20to%20begin%20a%20car%20search.%20Here%20are%20my%20details%3A%0A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(petrol%2C%20diesel%2C%20hybrid%2C%20EV%2C%20open%20to%20suggestions)%3A%20%0AGearbox%20(manual%2C%20automatic%2C%20either)%3A%20%0ABody%20style%20(hatchback%2C%20SUV%2C%20estate%2C%20saloon%2C%20other)%3A%20%0AMain%20use%20(commuting%2C%20family%2C%20mixed%2C%20business%2C%20other)%3A%20%0AAny%20must-have%20features%20(e.g.%20Apple%20CarPlay%2C%20A%2FC%2C%20parking%20sensors)%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3F%20%0AAnything%20else%20you%E2%80%99d%20like%20us%20to%20know%3F%20%0A%0AI%20understand%20that%20the%20search%20fee%20is%20%C2%A330%20for%20Basic%2C%20%C2%A350%20for%20In-depth%2C%20or%20Premium%20by%20agreement.%0A%0AThanks."
+                >
+                  Email us
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT: ADVERTISE YOUR CAR -->
+          <section class="card">
+            <div class="card-inner">
+              <h2>ADVERTISE YOUR CAR</h2>
+              <p>
+                If you’d like more eyes on your car, you can submit your details for us to review
+                and potentially advertise on our platform.
+              </p>
+
+              <p style="margin-top: 8px; font-size: 13px;">
+                <strong>Standard listing – £15 for 30 days</strong><br />
+                Your car will appear on our “cars for sale” area (coming online as we build inventory).
+              </p>
+
+              <p style="margin-top: 8px; font-size: 13px;">
+                <strong>Renewals – £10 per additional 30 days</strong><br />
+                Keep your advert running if the car hasn’t sold yet.
+              </p>
+
+              <p style="margin-top: 8px; font-size: 13px;">
+                We’ll ask for clear photos (all four corners, interior, dashboard, wheels) and key
+                details such as mileage, MOT, service history and any known faults.
+              </p>
+
+              <p style="margin-top: 10px; font-size: 13px;">
+                <strong>To get started</strong>, contact us by WhatsApp or email and mention that
+                you’d like to advertise your car. We’ll guide you through the next steps.
+              </p>
+
+              <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">
+                As this grows, we’ll introduce a simple self-serve upload form, auto-renew
+                reminders and optional “featured listing” upgrades.
+              </p>
+            </div>
+          </section>
         </div>
 
-        <!-- MAIN HERO / HOW IT WORKS COLUMN -->
-        <div class="card">
-          <div class="card-inner">
-            <!-- Brand header -->
-            <div class="hero-header">
-              <div class="logo-circle">
-                <span>FM</span>
-                <span>FINDMEACAR</span>
-              </div>
-              <div class="brand-text">
-                <div class="brand-name">FindMeACar-UK</div>
-                <div class="brand-tagline">
-                  Designed to free up your time, backed by years of experience sourcing and purchasing vehicles across the UK.
-                </div>
-              </div>
+        <!-- BEGIN YOUR SEARCH SECTION -->
+        <section class="section">
+          <div class="section-inner">
+            <div class="section-header-row">
+              <h3>BEGIN YOUR SEARCH</h3>
+              <span>Start</span>
             </div>
 
-            <!-- Chips -->
-            <div class="chip-row">
-              <span class="chip primary">Save time searching</span>
-              <span class="chip">Used &amp; nearly new cars</span>
-              <span class="chip">Straight to your phone</span>
-              <span class="chip">Independent &amp; transparent</span>
-            </div>
+            <p>
+              Ready to begin? Use the buttons below to send us your search details.
+              We’ll respond promptly with your reference number and payment details.
+            </p>
+            <p>
+              Once payment is confirmed, your personalised search will begin. We normally respond within 24 hours
+              with initial results. If you don’t see a reply, please check your spam or junk folder.
+            </p>
 
-            <!-- How it works -->
-            <div class="how-it-works">
-              <div class="how-top-row">
-                <div class="how-title">How it works</div>
-                <div class="how-steps-label">3 steps</div>
-              </div>
-
-              <div class="steps-list">
-                <div class="step-line">
-                  <div class="step-number">1</div>
-                  <div class="step-text">
-                    <strong>Tell us what you need</strong><br />
-                    Budget, mileage, fuel type, gearbox, body style, daily use and any must-have features.
-                  </div>
-                </div>
-                <div class="step-line">
-                  <div class="step-number">2</div>
-                  <div class="step-text">
-                    <strong>Choose your service level</strong><br />
-                    From a simple shortlist to more in-depth, tailored searching.
-                  </div>
-                </div>
-                <div class="step-line">
-                  <div class="step-number">3</div>
-                  <div class="step-text">
-                    <strong>Receive tailored car links</strong><br />
-                    We send matching listings directly to you via WhatsApp or email.
-                  </div>
-                </div>
-              </div>
-
-              <!-- Finder's fee -->
-              <div class="fees-card">
-                <div class="fees-title">Finder's fee</div>
-                <div class="fees-grid">
-                  <div class="fee-line">
-                    <div class="fee-name">£30 – Basic search</div>
-                    <div class="fee-price">Stripe or bank transfer</div>
-                  </div>
-                  <div class="fee-note">
-                    A focused shortlist of suitable cars that match your brief.
-                  </div>
-
-                  <div class="fee-line">
-                    <div class="fee-name">£50 – In-depth search</div>
-                    <div class="fee-price">Stripe or bank transfer</div>
-                  </div>
-                  <div class="fee-note">
-                    More options and tighter filtering for a closer match.
-                  </div>
-
-                  <div class="fee-line">
-                    <div class="fee-name">Premium search – £150</div>
-                    <div class="fee-price">Stripe or bank transfer</div>
-                  </div>
-                  <div class="fee-note">
-                    For more complex or urgent requirements – discussed in advance.
-                  </div>
-
-                  <div class="fee-line">
-                    <div class="fee-name">Subscription option</div>
-                    <div class="fee-price">From £&nbsp;POA</div>
-                  </div>
-                  <div class="fee-note">
-                    For ongoing help (e.g. traders, repeat buyers or multiple vehicles).
-                  </div>
-                </div>
-
-                <!-- Stripe buttons -->
-                <div class="fees-buttons-row">
-                  <a
-                    class="btn btn-primary btn-small"
-                    href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Pay £30 – Basic (Stripe)
-                  </a>
-                  <a
-                    class="btn btn-primary btn-small"
-                    href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Pay £50 – In-depth (Stripe)
-                  </a>
-                  <a
-                    class="btn btn-primary btn-small"
-                    href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Pay £150 – Premium (Stripe)
-                  </a>
-                  <a
-                    class="btn btn-secondary btn-small"
-                    href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Subscription – Stripe
-                  </a>
-                </div>
-
-                <div class="fee-note" style="margin-top:8px;">
-                  • Payment handled securely by Stripe<br />
-                  • Instant email receipt &amp; payment reference<br />
-                  • We’ll confirm your FindMeACar search reference after payment
-                </div>
-              </div>
-            </div>
-
-            <!-- Contact buttons under main column -->
-            <div class="contact-row">
+            <div class="section-cta-row">
               <a
-                class="btn btn-primary"
-                href="https://wa.me/447958452026?text=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20%2F%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(preferences)%3A%20%0AGearbox%20(preferences)%3A%20%0ADaily%20use%20(e.g.%20commuting%2C%20family%2C%20mix)%3A%20%0AMust-have%20features%3A%20%0ANice-to-have%20features%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3A%20%0AAnything%20else%20you%27d%20like%20us%20to%20know%3A%20%0A%0AI%27ll%20complete%20payment%20via%20Stripe%20or%20bank%20transfer%20after%20you%27ve%20confirmed%20the%20details.%0A"
+                class="btn btn-primary btn-full"
+                href="https://wa.me/447958452026?text=Hi%20FindMeACar%2CUK%2C%20I%27d%20like%20to%20begin%20a%20car%20search.%0A%0AMy%20details%20are%3A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(petrol%2C%20diesel%2C%20hybrid%2C%20EV%2C%20open%20to%20suggestions)%3A%20%0AGearbox%20(manual%2C%20automatic%2C%20either)%3A%20%0ABody%20style%20(hatchback%2C%20SUV%2C%20estate%2C%20saloon%2C%20other)%3A%20%0AMain%20use%20(commuting%2C%20family%2C%20mixed%2C%20business%2C%20other)%3A%20%0AAny%20must-have%20features%20(e.g.%20Apple%20CarPlay%2C%20A%2FC%2C%20parking%20sensors)%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3F%20%0AAnything%20else%20you%27d%20like%20us%20to%20know%3F%20%0A%0AOnce%20you%27ve%20confirmed%20your%20service%20level%20(%C2%A330%20Basic%2C%20%C2%A350%20In-depth%2C%20or%20Premium)%2C%20we%27ll%20send%20payment%20details%20and%20your%20reference%20number."
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Contact us on WhatsApp
+                Begin my search (WhatsApp)
               </a>
+
               <a
-                class="btn btn-secondary"
-                href="mailto:findmeacar-uk@outlook.com?subject=New%20car%20search%20enquiry&body=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20%2F%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(preferences)%3A%20%0AGearbox%20(preferences)%3A%20%0ADaily%20use%20(e.g.%20commuting%2C%20family%2C%20mix)%3A%20%0AMust-have%20features%3A%20%0ANice-to-have%20features%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3A%20%0AAnything%20else%20you%27d%20like%20us%20to%20know%3A%20%0A%0AI%27ll%20complete%20payment%20via%20Stripe%20or%20bank%20transfer%20after%20you%27ve%20confirmed%20the%20details.%0A"
+                class="btn btn-secondary btn-full"
+                href="mailto:findmeacar-uk@outlook.com?subject=FindMeACar-UK%20search%20enquiry&body=Hi%20FindMeACar-UK%2C%0A%0AI%E2%80%99d%20like%20to%20begin%20a%20car%20search.%20Here%20are%20my%20details%3A%0A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20/%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(petrol%2C%20diesel%2C%20hybrid%2C%20EV%2C%20open%20to%20suggestions)%3A%20%0AGearbox%20(manual%2C%20automatic%2C%20either)%3A%20%0ABody%20style%20(hatchback%2C%20SUV%2C%20estate%2C%20saloon%2C%20other)%3A%20%0AMain%20use%20(commuting%2C%20family%2C%20mixed%2C%20business%2C%20other)%3A%20%0AAny%20must-have%20features%20(e.g.%20Apple%20CarPlay%2C%20A%2FC%2C%20parking%20sensors)%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3F%20%0AAnything%20else%20you%E2%80%99d%20like%20us%20to%20know%3F%20%0A%0AI%20understand%20that%20the%20search%20fee%20is%20%C2%A330%20for%20Basic%2C%20%C2%A350%20for%20In-depth%2C%20or%20Premium%20by%20agreement.%0A%0AThanks."
               >
-                Email us
+                Begin my search (Email)
               </a>
             </div>
-          </div>
-        </div>
 
-        <!-- ADVERTISE YOUR CAR COLUMN -->
-        <div class="card advert-card">
-          <div class="card-inner">
-            <div class="card-title">Advertise <span>Your Car</span></div>
-            <div class="card-body">
-              <p>
-                If you’d like more eyes on your car, you can submit your details for us to review and potentially advertise on our platform.
-              </p>
-
-              <div class="advert-pricing">
-                <strong>Standard listing – £15 for 30 days</strong><br />
-                Your car will appear on our “cars for sale” area (coming online as we build inventory).
+            <div class="section-badges-row">
+              <div class="section-badge">
+                <span></span> Payment by bank transfer or Stripe
               </div>
-
-              <div class="advert-pricing" style="margin-top:6px;">
-                <strong>Renewals – £10 per additional 30 days</strong><br />
-                Keep your advert running if the car hasn’t sold yet.
+              <div class="section-badge">
+                <span></span> Unique reference provided
               </div>
-
-              <p class="advert-note">
-                We’ll ask for clear photos (all four corners, interior, dashboard, wheels) and key details such as mileage, MOT, service history and any known faults.
-              </p>
-
-              <p class="advert-contact">
-                <strong>To get started</strong>, contact us by WhatsApp or email and mention that you’d like to advertise your car. We’ll guide you through the next steps.
-              </p>
-
-              <p class="advert-highlight">
-                As this grows, we’ll introduce a simple self-serve upload form, auto-renew reminders and optional “featured listing” upgrades.
-              </p>
+              <div class="section-badge">
+                <span></span> Clear tracking on our side
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <!-- BEGIN YOUR SEARCH SECTION -->
-      <div class="begin-section">
-        <div class="begin-inner">
-          <div class="begin-title">Begin your search</div>
-          <div class="begin-body">
-            <p>
-              Ready to begin? Use the buttons below to send us your search details. We’ll respond promptly with your reference number and payment details.
-            </p>
-            <p>
-              Once payment is confirmed, your personalised search will begin. We normally respond within 24 hours with initial results. If you don’t see a reply, please check your spam or junk folder.
-            </p>
-          </div>
+        <!-- BOTTOM GRID: FAQ + TERMS -->
+        <div class="bottom-grid">
+          <section class="card">
+            <div class="card-inner">
+              <div class="faq-title">GOOD TO KNOW</div>
 
-          <div class="begin-buttons">
-            <a
-              class="btn btn-primary"
-              href="https://wa.me/447958452026?text=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20%2F%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(preferences)%3A%20%0AGearbox%20(preferences)%3A%20%0ADaily%20use%20(e.g.%20commuting%2C%20family%2C%20mix)%3A%20%0AMust-have%20features%3A%20%0ANice-to-have%20features%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3A%20%0AAnything%20else%20you%27d%20like%20us%20to%20know%3A%20%0A%0AI%27ll%20complete%20payment%20via%20Stripe%20or%20bank%20transfer%20after%20you%27ve%20confirmed%20the%20details.%0A"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Begin my search (WhatsApp)
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="mailto:findmeacar-uk@outlook.com?subject=New%20car%20search%20enquiry&body=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%20%0APhone%20number%3A%20%0APreferred%20contact%20method%20(WhatsApp%20%2F%20Email)%3A%20%0ABudget%20(%C2%A3)%3A%20%0AMaximum%20mileage%3A%20%0AFuel%20type%20(preferences)%3A%20%0AGearbox%20(preferences)%3A%20%0ADaily%20use%20(e.g.%20commuting%2C%20family%2C%20mix)%3A%20%0AMust-have%20features%3A%20%0ANice-to-have%20features%3A%20%0AHow%20soon%20do%20you%20need%20the%20car%3A%20%0AAnything%20else%20you%27d%20like%20us%20to%20know%3A%20%0A%0AI%27ll%20complete%20payment%20via%20Stripe%20or%20bank%20transfer%20after%20you%27ve%20confirmed%20the%20details.%0A"
-            >
-              Begin my search (Email)
-            </a>
-          </div>
+              <div class="faq-item">
+                <strong>Do you inspect or buy the car for me?</strong>
+                <span>
+                  No – we source suitable listings based on your brief. You handle viewings, checks and purchase directly with the sellers.
+                </span>
+              </div>
 
-          <div class="begin-tags">
-            <span class="begin-tag">Payment by bank transfer or Stripe</span>
-            <span class="begin-tag">Unique reference provided</span>
-            <span class="begin-tag">Clear tracking on our side</span>
-          </div>
-        </div>
-      </div>
+              <div class="faq-item">
+                <strong>Do you guarantee the cars?</strong>
+                <span>
+                  No – we don’t inspect or warranty vehicles. We recommend carrying out your own checks and, where appropriate, using a professional inspection.
+                </span>
+              </div>
 
-      <!-- BOTTOM GRID: FAQ + TERMS -->
-      <div class="bottom-grid">
-        <div class="faq-block">
-          <div class="faq-title">Good to know</div>
-          <p>
-            <strong>Do you inspect or buy the car for me?</strong><br />
-            No – we source suitable listings based on your brief. You handle viewings, checks and purchase directly with the sellers.
-          </p>
-          <p>
-            <strong>Do you guarantee the cars?</strong><br />
-            No – we don’t inspect or warranty vehicles. We recommend carrying out your own checks and, where appropriate, using a professional inspection.
-          </p>
-          <p>
-            <strong>What areas do you cover?</strong><br />
-            Online listings across the UK. You can tell us how far you’re prepared to travel.
-          </p>
-          <p>
-            <strong>Can you highlight potential red flags?</strong><br />
-            We can flag details we notice in the advert or history that may be worth a closer look, but this does not replace your own checks or a professional inspection.
-          </p>
-        </div>
+              <div class="faq-item">
+                <strong>What areas do you cover?</strong>
+                <span>
+                  Online listings across the UK. You can tell us how far you’re prepared to travel.
+                </span>
+              </div>
 
-        <div class="terms-block">
-          <div class="terms-title">Terms &amp; disclaimer</div>
-          <p>
-            FindMeACar-UK is a vehicle search and link-finding service. We search online listings based on the information you provide and share vehicles that appear to match your brief.
-          </p>
-          <p>
-            We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments and paperwork are your responsibility.
-          </p>
-          <p>
-            You should always perform your own due diligence before buying any vehicle, including (where appropriate) a professional inspection and history check.
-          </p>
-          <span class="terms-important">Important</span>
-          <p>
-            We may quietly donate a small percentage of annual revenue to children’s charities. This is not a marketing claim or guarantee – just something we intend to do as the business grows.
-          </p>
-          <div class="footer-note">
-            This site and service are currently operated as a small independent venture while we continue to develop tools and automation in the background.
-          </div>
+              <div class="faq-item">
+                <strong>Can you highlight potential red flags?</strong>
+                <span>
+                  We can flag details we notice in the advert or history that may be worth a closer look, but this does not replace your own checks or a professional inspection.
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-inner">
+              <h3>TERMS &amp; DISCLAIMER</h3>
+              <div class="terms-text">
+                <p>
+                  FindMeACar-UK is a vehicle search and link-finding service. We search online listings based on the information you provide and share vehicles that appear to match your brief.
+                </p>
+                <p>
+                  We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments and paperwork are your responsibility.
+                </p>
+                <p>
+                  You should always perform your own due diligence before buying any vehicle, including (where appropriate) a professional inspection and history check.
+                </p>
+                <p class="important">
+                  <strong>Important:</strong> We may quietly donate a small percentage of annual revenue to children’s charities. This is not a marketing claim or guarantee – just something we intend to do as the business grows.
+                </p>
+                <p class="footer-line">
+                  This site and service are currently operated as a small independent venture while we continue to develop tools and automation in the background.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
