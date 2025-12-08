@@ -2,9 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>FindMeACar – Personal Car Finder Service</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FindMeACar – Car Finder Service</title>
+  <!-- SEO -->
+  <meta name="description" content="FindMeACar helps you find your next car quickly. Tell us your budget and requirements and we send you tailored listings. Basic, in-depth and premium search options, plus a simple way to advertise your car." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="FindMeACar – Personal Car Finder Service" />
+  <meta property="og:description" content="Independent car-finding service. You tell us what you need. We search, shortlist and send you tailored car links." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.findmeacar-uk.co.uk/" />
+  <!-- When you have a real image, update this URL -->
+  <meta property="og:image" content="https://www.findmeacar-uk.co.uk/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FindMeACar – Personal Car Finder Service" />
+  <meta name="twitter:description" content="Independent car-finding help with simple fixed fees and fast responses." />
+
+  <!-- PWA-ish bits from earlier (icon etc) -->
   <meta name="theme-color" content="#020617" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -497,12 +515,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
     }
 
-    .footer strong {
-  color: #facc15 !important; }
+    .footer strong { color: var(--accent); }
 
     @media (min-width: 768px) {
       body { padding: 28px; }
@@ -788,7 +803,7 @@
 
         <footer class="footer">
           <span>By <strong>FindMeACar</strong></span>
-          <span>As we grow, we may quietly donate a small percentage of annual revenue to children’s charities.</span>
+          <span></span>
         </footer>
 
       </main>
