@@ -95,7 +95,7 @@
       padding: 28px 26px 32px;
       background:
         radial-gradient(circle at top left, rgba(52,84,209,0.25), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255,179,71,0.22), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255,179,71,0.18), transparent 60%),
         linear-gradient(145deg, #050815 0%, #050716 45%, #050918 100%);
     }
 
@@ -117,13 +117,6 @@
       gap: 16px;
       margin-bottom: 18px;
       flex-wrap: wrap;
-    }
-
-    .status-block {
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-width:210px;
     }
 
     .status-pill {
@@ -160,15 +153,6 @@
       color: var(--text-soft);
       font-size: 13px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.45);
-    }
-
-    .festive-banner strong {
-      color:#ffffff;
-    }
-
-    .festive-banner span.highlight {
-      color: var(--accent);
-      font-weight: 600;
     }
 
     .festive-banner-emoji {
@@ -384,80 +368,36 @@
     }
 
     /* --------------------
-       FINDER'S FEE STRIPE
+       FINDER'S FEE – SIMPLE LIST
     --------------------- */
 
-    .pricing-card {
+    .finder-fee {
       margin-top: 18px;
-      display: grid;
-      grid-template-columns: minmax(0,1.2fr) minmax(0,1.35fr);
-      gap: 16px;
     }
 
-    @media (max-width: 840px) {
-      .pricing-card {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(4,minmax(0,1fr));
-      gap: 10px;
-      margin-top: 10px;
-      font-size: 12px;
-    }
-
-    @media (max-width: 980px) {
-      .pricing-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .pricing-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-
-    .price-col-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .price-card {
-      border-radius: 16px;
-      padding: 10px 10px 12px;
-      background: radial-gradient(circle at top left, rgba(255,210,120,0.12),transparent 65%),
-                  rgba(11,18,37,0.98);
-      border: 1px solid rgba(255,255,255,0.06);
-      min-height: 130px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .price-card strong {
+    .finder-fee p {
       font-size: 13px;
-    }
-
-    .price-card span.label {
-      display: block;
-      font-size: 11px;
       color: var(--text-soft);
     }
 
-    .price-card p {
+    .price-list {
+      margin-top: 8px;
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .price-list li + li {
       margin-top: 4px;
-      font-size: 12px;
-      color: var(--text-soft);
+    }
+
+    .price-list strong {
+      color: #ffffff;
+      font-weight: 600;
     }
 
     .pricing-actions {
-      margin-top: 16px;
+      margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -508,30 +448,9 @@
        ADVERTISE YOUR CAR
     --------------------- */
 
-    .section-block {
-      margin-top: 26px;
-      background: var(--bg-card-soft);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      padding: 18px 18px 20px;
-      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
-    }
-
-    .section-title {
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .section-block p {
-      font-size: 14px;
-      color: var(--text-soft);
-    }
-
-    .section-block p + p {
-      margin-top: 6px;
+    .contact-highlight a {
+      color: var(--accent-soft);
+      font-weight: 600;
     }
 
     .highlight-line {
@@ -539,54 +458,44 @@
       color: #ffffff;
     }
 
-    .contact-highlight a {
-      color: var(--accent-soft);
-      font-weight: 600;
-    }
-
     /* --------------------
-       INFO GRID (FAQ + TERMS)
+       BOTTOM GRID (FAQ + TERMS)
     --------------------- */
 
-    .info-grid-section {
-      margin-top: 22px;
-      background: rgba(7,11,26,0.98);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      padding: 18px 18px 20px;
-      box-shadow: 0 14px 32px rgba(0,0,0,0.65);
-    }
-
-    .info-grid {
-      display:grid;
+    .grid-bottom {
+      display: grid;
       grid-template-columns: minmax(0,1.1fr) minmax(0,1.3fr);
-      gap:18px;
+      gap: 18px;
+      margin-top: 26px;
     }
 
-    @media (max-width: 840px){
-      .info-grid{
-        grid-template-columns:minmax(0,1fr);
+    @media (max-width: 840px) {
+      .grid-bottom {
+        grid-template-columns: minmax(0,1fr);
       }
     }
 
-    .info-title {
-      font-size: 13px;
-      letter-spacing: 0.18em;
+    .section-heading {
+      font-size: 12px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 8px;
     }
 
-    .faq-item-title {
-      font-weight:600;
-      color:#ffffff;
-      font-size:13px;
-      margin-top:6px;
+    .faq-item + .faq-item {
+      margin-top: 8px;
     }
 
-    .faq-item-text {
-      font-size:13px;
-      color:var(--text-soft);
+    .faq-item strong {
+      color: #ffffff;
+      font-size: 13px;
+    }
+
+    .faq-item p {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 2px;
     }
 
     /* --------------------
@@ -611,7 +520,7 @@
 
       <!-- STATUS + FESTIVE -->
       <div class="top-strip">
-        <div class="status-block">
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:210px;">
           <div class="status-pill">
             <span class="status-pill-dot"></span>
             <span>FindMeACar-UK Online</span>
@@ -623,8 +532,8 @@
           <div>
             <strong>Season’s greetings from FindMeACar-UK</strong>
             <span class="festive-banner-emoji">🎄</span><br>
-            Wishing you safe, smooth motoring into the New Year – whether you’re upgrading,
-            downsizing or buying your first car.
+            Wishing you safe, smooth motoring into the New Year –
+            whether you’re upgrading, downsizing or buying your first car.
           </div>
           <button class="nyw-button">New year, new set of wheels</button>
         </div>
@@ -709,77 +618,54 @@
             </div>
           </div>
 
-          <!-- Finder's fee + Stripe -->
-          <div class="pricing-card" style="margin-top:18px;">
-            <div>
-              <div class="card-title" style="margin-bottom:4px;">Finder’s fee</div>
-              <p style="font-size:13px;color:var(--text-soft);">
-                Pick the search style that fits you best, then pay securely online with Stripe.
-              </p>
+          <!-- Finder's fee – simple version -->
+          <div class="finder-fee">
+            <div class="card-title" style="margin-bottom:4px;">Finder’s fee</div>
+            <p>
+              Pick the search style that fits you best, then pay securely online with Stripe.
+            </p>
+            <ul class="price-list">
+              <li><strong>£30 – Basic search:</strong> Focused shortlist of suitable cars that match your brief.</li>
+              <li><strong>£50 – In-depth search:</strong> More options and tighter filtering for a closer match.</li>
+              <li><strong>£150 – Premium search:</strong> For more complex or urgent requirements, discussed in advance.</li>
+              <li><strong>Subscription option (from £150):</strong> Repeat searches for traders, repeat buyers or multiple vehicles.</li>
+            </ul>
 
-              <div class="pricing-grid">
-                <div class="price-card">
-                  <span class="price-col-label">Search only</span>
-                  <strong>£30 – Basic search</strong>
-                  <span class="label">Focused shortlist</span>
-                  <p>A shortlist of suitable cars that match your brief. Ideal if you already have a good idea of what you want.</p>
-                </div>
-                <div class="price-card">
-                  <span class="price-col-label">Search only</span>
-                  <strong>£50 – In-depth search</strong>
-                  <span class="label">More options &amp; tighter filtering</span>
-                  <p>A more detailed, tailored search with additional options and closer filtering to your brief.</p>
-                </div>
-                <div class="price-card">
-                  <span class="price-col-label">Paid services</span>
-                  <strong>£150 – Premium search</strong>
-                  <span class="label">More complex or urgent</span>
-                  <p>For more complex or urgent requirements, discussed in advance so we can tailor the search.</p>
-                </div>
-                <div class="price-card">
-                  <span class="price-col-label">From £150 / subscription</span>
-                  <strong>Subscription option</strong>
-                  <span class="label">Repeat searches</span>
-                  <p>For ongoing help (e.g. traders, repeat buyers or multiple vehicles). Price agreed in advance.</p>
-                </div>
-              </div>
+            <div class="pricing-actions">
+              <!-- Stripe links -->
+              <a class="btn-pill btn-primary"
+                 href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
+                 target="_blank" rel="noopener">
+                Pay £30 – Basic (Stripe)
+              </a>
+              <a class="btn-pill btn-primary"
+                 href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
+                 target="_blank" rel="noopener">
+                Pay £50 – In-depth (Stripe)
+              </a>
+              <a class="btn-pill btn-primary"
+                 href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
+                 target="_blank" rel="noopener">
+                Pay £150 – Premium
+              </a>
+              <a class="btn-pill btn-primary"
+                 href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
+                 target="_blank" rel="noopener">
+                Subscription
+              </a>
+            </div>
 
-              <div class="pricing-actions">
-                <!-- Stripe links – update if you change them in Stripe -->
-                <a class="btn-pill btn-primary"
-                   href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
-                   target="_blank" rel="noopener">
-                  Pay £30 – Basic (Stripe)
-                </a>
-                <a class="btn-pill btn-primary"
-                   href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
-                   target="_blank" rel="noopener">
-                  Pay £50 – In-depth (Stripe)
-                </a>
-                <a class="btn-pill btn-primary"
-                   href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
-                   target="_blank" rel="noopener">
-                  Pay £150 – Premium
-                </a>
-                <a class="btn-pill btn-primary"
-                   href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
-                   target="_blank" rel="noopener">
-                  Subscription
-                </a>
-              </div>
-
-              <div class="pricing-actions" style="margin-top:14px;">
-                <!-- WhatsApp + Email contact -->
-                <a class="btn-pill btn-ghost"
-                   href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%20I%E2%80%99d%20like%20to%20begin%20a%20car%20search."
-                   target="_blank" rel="noopener">
-                  Contact us on WhatsApp
-                </a>
-                <a class="btn-pill btn-ghost"
-                   href="mailto:hello@findmeacar-uk.co.uk?subject=FindMeACar-UK%20search%20enquiry">
-                  Email us
-                </a>
-              </div>
+            <div class="pricing-actions" style="margin-top:14px;">
+              <!-- WhatsApp + Email contact -->
+              <a class="btn-pill btn-ghost"
+                 href="https://wa.me/447958452026?text=Hi%20FindMeACar%2C%20I%E2%80%99d%20like%20to%20begin%20a%20car%20search."
+                 target="_blank" rel="noopener">
+                Contact us on WhatsApp
+              </a>
+              <a class="btn-pill btn-ghost"
+                 href="mailto:hello@findmeacar-uk.co.uk?subject=FindMeACar-UK%20search%20enquiry">
+                Email us
+              </a>
             </div>
           </div>
         </section>
@@ -819,61 +705,59 @@
         </aside>
       </div>
 
-      <!-- GOOD TO KNOW + TERMS -->
-      <section class="info-grid-section">
-        <div class="info-grid">
-          <!-- Good to know -->
-          <div>
-            <div class="info-title">Good to know</div>
+      <!-- BOTTOM GRID: FAQ + TERMS -->
+      <div class="grid-bottom">
+        <section class="card">
+          <div class="section-heading">Good to know</div>
 
-            <div class="faq-item-title">Do you inspect or buy the car for me?</div>
-            <div class="faq-item-text">
-              No – we source suitable listings based on your brief. You handle viewings, checks and purchase
-              directly with the sellers.
-            </div>
+          <div class="faq-item">
+            <strong>Do you inspect or buy the car for me?</strong>
+            <p>
+              No – we source suitable listings based on your brief. You handle viewings, checks and purchase directly with the sellers.
+            </p>
+          </div>
 
-            <div class="faq-item-title">Do you guarantee the cars?</div>
-            <div class="faq-item-text">
-              No – we don’t inspect or warranty vehicles. We recommend carrying out your own checks and,
-              where appropriate, using a professional inspection.
-            </div>
+          <div class="faq-item">
+            <strong>Do you guarantee the cars?</strong>
+            <p>
+              No – we don’t inspect or warranty vehicles. We recommend carrying out your own checks and, where appropriate, using a professional inspection.
+            </p>
+          </div>
 
-            <div class="faq-item-title">What areas do you cover?</div>
-            <div class="faq-item-text">
+          <div class="faq-item">
+            <strong>What areas do you cover?</strong>
+            <p>
               Online listings across the UK. You can tell us how far you’re prepared to travel.
-            </div>
-
-            <div class="faq-item-title">Can you highlight potential red flags?</div>
-            <div class="faq-item-text">
-              We can flag details we notice in the advert or history that may be worth a closer look, but this
-              does not replace your own checks or a professional inspection.
-            </div>
-          </div>
-
-          <!-- Terms & disclaimer -->
-          <div>
-            <div class="info-title">Terms &amp; disclaimer</div>
-            <p style="font-size:13px;">
-              FindMeACar-UK is a vehicle search and link-finding service. We search online listings based on the
-              information you provide and share vehicles that appear to match your brief.
-            </p>
-            <p style="font-size:13px;margin-top:6px;">
-              We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments
-              and paperwork are your responsibility.
-            </p>
-            <p style="font-size:13px;margin-top:6px;">
-              You should always perform your own due diligence before buying any vehicle, including (where
-              appropriate) a professional inspection and history check.
             </p>
           </div>
-        </div>
-      </section>
+
+          <div class="faq-item">
+            <strong>Can you highlight potential red flags?</strong>
+            <p>
+              We can flag details we notice in the advert or history that may be worth a closer look, but this does not replace your own checks or a professional inspection.
+            </p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-heading">Terms &amp; disclaimer</div>
+          <p style="font-size:13px;color:var(--text-soft);">
+            FindMeACar-UK is a vehicle search and link-finding service. We search online listings based on the information you provide and share vehicles that appear to match your brief.
+          </p>
+          <p style="font-size:13px;color:var(--text-soft);margin-top:6px;">
+            We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments and paperwork are your responsibility.
+          </p>
+          <p style="font-size:13px;color:var(--text-soft);margin-top:6px;">
+            You should always perform your own due diligence before buying any vehicle, including (where appropriate) a professional inspection and history check.
+          </p>
+        </section>
+      </div>
 
       <!-- FOOTER NOTE -->
       <div class="footer-note">
         FindMeACar-UK is a small independent venture. We may quietly donate a small percentage of annual
-        revenue to children’s charities – this isn’t a marketing claim or guarantee,
-        just something we intend to do as the business grows.
+        revenue to children’s charities – this isn’t a marketing claim or guarantee, just something we intend
+        to do as the business grows.
       </div>
     </div>
   </div>
