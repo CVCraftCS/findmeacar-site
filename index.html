@@ -4,24 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FindMeACar – Car Finder Service</title>
+  <title>FindMeACar-UK – Personal Car Finder Service</title>
+  <meta name="description" content="FindMeACar-UK saves you time by sourcing cars that match your needs and sending links straight to your phone or inbox." />
   <meta name="theme-color" content="#020617" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="FindMeACar" />
+  <meta name="apple-mobile-web-app-title" content="FindMeACar-UK" />
 
-  <!-- App icon -->
+  <!-- Embedded SVG app icon -->
   <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230ea5e9'/%3E%3Cstop offset='0.5' stop-color='%2322c55e'/%3E%3Cstop offset='1' stop-color='%23facc15'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='32' y='32' width='448' height='448' rx='96' fill='%23020617'/%3E%3Crect x='64' y='64' width='384' height='384' rx='80' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' fill='%23020617' font-family='system-ui' font-size='140' font-weight='700' letter-spacing='20'%3EFM%3C/text%3E%3Ctext x='50%25' y='76%25' text-anchor='middle' fill='%23020617' font-family='system-ui' font-size='34' font-weight='600' letter-spacing='8'%3EFindMeACar%3C/text%3E%3C/svg%3E" />
 
   <style>
     :root {
       --bg: #020617;
+      --card: #020617ef;
       --accent: #facc15;
       --accent-soft: rgba(250, 204, 21, 0.12);
       --text: #f9fafb;
       --muted: #9ca3af;
-      --card-bg: #050816;
+      --border-soft: rgba(148, 163, 184, 0.4);
     }
 
     * {
@@ -33,7 +35,7 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827, #020617 55%, #000);
+      background: radial-gradient(circle at top, #111827, #020617 50%, #000);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -43,78 +45,71 @@
       overflow-x: hidden;
     }
 
+    /* Soft car silhouette in background */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cpath d='M150 350 L300 250 H900 L1050 350 H1120 V420 H1070 A80 80 0 0 1 930 420 A80 80 0 0 1 790 420 H410 A80 80 0 0 1 270 420 A80 80 0 0 1 150 420 Z' fill='none' stroke='%23e5e7eb' stroke-width='20' stroke-opacity='0.18' stroke-linejoin='round'/%3E%3Ccircle cx='380' cy='420' r='70' fill='none' stroke='%23e5e7eb' stroke-width='20' stroke-opacity='0.18'/%3E%3Ccircle cx='820' cy='420' r='70' fill='none' stroke='%23e5e7eb' stroke-width='20' stroke-opacity='0.18'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cpath d='M150 350 L300 250 H900 L1050 350 H1120 V420 H1070 A80 80 0 0 1 930 420 A80 80 0 0 1 790 420 H410 A80 80 0 0 1 270 420 A80 80 0 0 1 150 420 Z' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10' stroke-linejoin='round'/%3E%3Ccircle cx='380' cy='420' r='70' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10'/%3E%3Ccircle cx='820' cy='420' r='70' fill='none' stroke='%23ffffff' stroke-width='18' stroke-opacity='0.10'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: center bottom;
-      background-size: 90% auto;
+      background-size: 85% auto;
       pointer-events: none;
       z-index: 0;
+      opacity: 1;
     }
 
-    .snow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(3px 3px at 10px 20px, rgba(255,255,255,0.95) 0, transparent 60%),
-        radial-gradient(3px 3px at 60px 90px, rgba(255,255,255,0.85) 0, transparent 60%),
-        radial-gradient(3px 3px at 120px 40px, rgba(255,255,255,0.9) 0, transparent 60%),
-        radial-gradient(2px 2px at 180px 120px, rgba(255,255,255,0.8) 0, transparent 60%);
-      background-size: 160px 160px;
-      animation: snow 22s linear infinite;
-      z-index: 1;
-      opacity: 0.55;
-    }
-
-    .snow.snow-front {
-      animation-duration: 14s;
-      opacity: 0.85;
-    }
-
-    @keyframes snow {
-      0% { transform: translate3d(0,-120px,0); }
-      100% { transform: translate3d(-60px,620px,0); }
-    }
-
-    .page-layout {
+    .shell {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       width: 100%;
-      max-width: 1120px;
-      display: flex;
-      flex-direction: column;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr) 260px;
       gap: 16px;
     }
 
-    .columns {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: stretch;
+    @media (max-width: 900px) {
+      .shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
-    .side-card,
     .app {
-      border-radius: 26px;
-      background: rgba(2, 6, 23, 0.94);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: 0 26px 90px rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(8px);
-    }
-
-    .side-card { padding: 14px 14px 16px; }
-
-    .side-inner { display: flex; flex-direction: column; gap: 8px; }
-
-    .app {
-      padding: 22px 18px 22px;
+      border-radius: 24px;
+      background: #020617d9;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 24px 80px rgba(15, 23, 42, 0.9);
+      padding: 20px 18px 22px;
       display: flex;
       flex-direction: column;
       gap: 18px;
+    }
+
+    .side-card {
+      border-radius: 20px;
+      background: #020617ea;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.8);
+      padding: 14px 14px 16px;
+      font-size: 13px;
+      line-height: 1.45;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .side-highlight {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
     }
 
     .status-bar {
@@ -123,7 +118,7 @@
       align-items: center;
       font-size: 11px;
       color: var(--muted);
-      opacity: 0.95;
+      opacity: 0.9;
     }
 
     .pill {
@@ -132,8 +127,8 @@
       gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: #0f172a;
       font-size: 11px;
     }
 
@@ -145,107 +140,52 @@
       box-shadow: 0 0 6px #22c55e;
     }
 
-    .season-banner {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 22px;
-      border: 1px solid rgba(252, 211, 77, 0.9);
-      background: linear-gradient(135deg,
-        rgba(220, 38, 38, 0.9),
-        rgba(234, 179, 8, 0.95),
-        rgba(22, 163, 74, 0.9));
-      box-shadow:
-        0 0 26px rgba(248, 250, 252, 0.25),
-        0 0 40px rgba(234, 179, 8, 0.5);
-      font-size: 12px;
-      color: #111827;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .season-banner::after {
-      content: "✶ ✷ ✸ ✶";
-      position: absolute;
-      right: 14px;
-      top: 6px;
-      font-size: 11px;
-      letter-spacing: 6px;
-      color: rgba(15, 23, 42, 0.3);
-    }
-
-    .season-graphic {
-      flex-shrink: 0;
-      width: 58px;
-      height: 40px;
-    }
-
-    .season-heading {
-      font-family: "Segoe Script", "Brush Script MT", system-ui, -apple-system, sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      margin-bottom: 2px;
-    }
-
-    .season-heading strong {
-      text-shadow: 0 0 8px rgba(248, 250, 252, 0.5);
-    }
-
-    .season-sub {
-      font-size: 11px;
-      color: #0b1120;
-    }
-
     .hero {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .hero-avatar {
-      width: 70px;
-      height: 70px;
+      width: 64px;
+      height: 64px;
       border-radius: 24px;
       background: radial-gradient(circle at top, #0ea5e9, #22c55e, #0f172a);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(34, 197, 94, 0.5);
-      box-shadow: 0 0 28px rgba(34, 197, 94, 0.7);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
     }
 
     .hero-avatar-main {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.3em;
       text-transform: uppercase;
     }
 
     .hero-avatar-sub {
-      font-size: 8px;
+      font-size: 7.5px;
       letter-spacing: 0.15em;
-      opacity: 0.9;
+      opacity: 0.85;
       text-transform: uppercase;
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .hero-main {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .hero-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.02em;
       display: flex;
-      flex-wrap: wrap;
       gap: 6px;
     }
 
@@ -258,91 +198,67 @@
     .hero-subtitle {
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.45;
-      max-width: 340px;
+      line-height: 1.35;
+      max-width: 320px;
     }
 
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .hero-tag {
       font-size: 11px;
-      padding: 3px 9px;
+      padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
+      border: 1px solid var(--border-soft);
       color: var(--muted);
-      background: rgba(15, 23, 42, 0.95);
     }
 
     .section {
       margin-top: 6px;
-      padding: 13px 12px 12px;
+      padding: 12px;
       border-radius: 18px;
-      background: var(--card-bg);
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      background: var(--card);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 6px;
       align-items: center;
-      margin-bottom: 7px;
     }
 
     .section-title {
       font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       color: #9ca3af;
     }
 
     .section-pill {
       font-size: 10px;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: #020617;
+      border: 1px solid var(--border-soft);
+      background: #0f172a;
       color: var(--muted);
     }
 
     .section-body {
       font-size: 13px;
       color: #e5e7eb;
-      line-height: 1.5;
-    }
-
-    .info-title {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 2px;
-    }
-
-    .side-inner p {
-      font-size: 13px;
-      color: #e5e7eb;
       line-height: 1.45;
     }
-
-    .info-list {
-      margin-top: 2px;
-      padding-left: 14px;
-      font-size: 12px;
-      color: #d1d5db;
-    }
-
-    .info-list li { margin-bottom: 3px; }
 
     .steps {
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 6px;
       margin-top: 8px;
     }
 
@@ -354,64 +270,54 @@
     }
 
     .step-badge {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 999px;
-      border: 1px solid rgba(250, 204, 21, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.7);
       font-size: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #facc15, #eab308);
-      color: #111827;
-      flex-shrink: 0;
     }
 
-    .step strong {
-      display: block;
-      font-size: 12px;
-      color: #f9fafb;
-      margin-bottom: 1px;
-    }
-
-    .cta-card {
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
       margin-top: 10px;
-      padding: 10px;
-      border-radius: 16px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(250, 204, 21, 0.7);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
     }
 
-    .cta-text {
+    .plan {
+      padding: 8px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
       font-size: 12px;
-      color: var(--muted);
-      max-width: 100%;
     }
 
-    .cta-title {
+    .plan-price {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .plan-note {
       font-size: 11px;
-      color: var(--accent);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
+      color: var(--muted);
+      margin-bottom: 6px;
     }
 
-    .pricing-list {
-      list-style: none;
-      font-size: 12px;
-      color: #e5e7eb;
-    }
-
-    .pricing-list li { margin-bottom: 4px; }
-
-    .pricing-tier-name {
-      font-weight: 600;
-      color: #facc15;
+    .btn-small {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      text-decoration: none;
+      background: var(--accent);
+      color: #111827;
+      text-align: center;
     }
 
     .btn-row {
@@ -428,15 +334,11 @@
       border-radius: 999px;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       font-weight: 500;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease, filter 0.08s ease;
-      border: none;
-      cursor: pointer;
     }
 
     .btn-primary {
@@ -446,33 +348,19 @@
     }
 
     .btn-secondary {
-      background: #020617;
+      background: #0f172a;
       color: #e5e7eb;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-    }
-
-    .btn-stripe {
-      font-size: 12px;
-      white-space: normal;
-      line-height: 1.3;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.05);
-      box-shadow: 0 0 26px rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-soft);
     }
 
     .faq-list {
       margin-top: 6px;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 6px;
       font-size: 12px;
       color: #d1d5db;
     }
-
-    .faq-list strong { color: #f9fafb; }
 
     .chips {
       display: flex;
@@ -483,417 +371,337 @@
 
     .chip {
       font-size: 11px;
-      padding: 4px 10px;
+      padding: 4px 9px;
       border-radius: 999px;
-      background: #020617;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: #e5e7eb;
+      background: #0f172a;
+      border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
     .footer {
-      margin-top: 10px;
+      margin-top: 6px;
       font-size: 11px;
       color: var(--muted);
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
     }
 
-    .footer strong { color: var(--accent); }
-
-    @media (min-width: 768px) {
-      body { padding: 28px; }
+    .footer strong {
+      color: var(--accent);
     }
 
-    @media (min-width: 1024px) {
-      .columns {
-        flex-direction: row;
-        gap: 16px;
-      }
-      .side-card { width: 24%; }
-      .app { width: 52%; }
+    .small-text {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
     }
+
   </style>
 </head>
 
 <body>
-  <div class="snow snow-back"></div>
-  <div class="snow snow-front"></div>
+  <div class="shell">
 
-  <div class="page-layout">
-    <div class="columns">
+    <!-- LEFT COLUMN – About / Service ethos -->
+    <aside class="side-card">
+      <div class="side-title">About FindMeACar-UK</div>
+      <p>
+        FindMeACar-UK is a small, independent car-finding service designed to save you
+        time and stress when looking for your next vehicle.
+      </p>
+      <p>
+        We use years of experience buying and sourcing cars to narrow down the options and
+        send you listings that actually fit what you need – not just whatever happens to
+        be at the top of a search page.
+      </p>
+      <p class="side-highlight">You stay in control – we just bring the right cars to your attention.</p>
 
-      <!-- LEFT: ABOUT -->
-      <aside class="side-card">
-        <div class="side-inner">
-          <div class="info-title">About us</div>
-          <p>
-            FindMeACar was created to help people who don’t have the time or desire to scroll through pages of car
-            adverts. We use our experience buying and running vehicles to narrow the search and highlight options
-            that fit what you actually need.
-          </p>
-          <ul class="info-list">
-            <li>Independent, search-only service</li>
-            <li>Focused on UK used and nearly-new cars</li>
-            <li>Straightforward communication via WhatsApp or email</li>
-          </ul>
+      <div class="side-title" style="margin-top:10px;">Service approach</div>
+      <ul style="padding-left:16px; margin-top:4px;">
+        <li>Independent and transparent</li>
+        <li>No pressure, no upselling</li>
+        <li>Clear communication and expectations</li>
+        <li>We respect your time and budget</li>
+      </ul>
+    </aside>
+
+    <!-- MAIN APP -->
+    <main class="app">
+
+      <!-- Status bar -->
+      <header class="status-bar">
+        <div class="pill">
+          <span class="pill-dot"></span> FindMeACar-UK Online
         </div>
-      </aside>
+        <span>Typical response within 24 hours</span>
+      </header>
 
-      <!-- CENTRE: MAIN APP -->
-      <main class="app">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-avatar">
+          <div class="hero-avatar-main">FM</div>
+          <div class="hero-avatar-sub">FindMeACar</div>
+        </div>
 
-        <header class="status-bar">
-          <div class="pill">
-            <span class="pill-dot"></span> FindMeACar Online
-          </div>
-          <span>Professional response within 24 hours</span>
-        </header>
-
-        <!-- FESTIVE BANNER -->
-        <section class="season-banner">
-          <div class="season-graphic">
-            <svg viewBox="0 0 120 80" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 62 H92 C98 62 102 66 102 72 H96 C96 69 94 67 92 67 H18 C18 70 16 72 13 72 C10 72 8 70 8 67 H14 C14 68 14.5 69 15.5 69 C16.5 69 17 68.5 17 67.5"
-                    fill="none" stroke="#7c2d12" stroke-width="3.5" stroke-linecap="round" />
-              <rect x="18" y="54" width="64" height="6" rx="3" fill="#b91c1c" />
-              <rect x="32" y="32" width="42" height="16" rx="4" fill="#facc15" />
-              <path d="M38 32 L48 22 H68 L74 32 Z" fill="#facc15" />
-              <rect x="44" y="25" width="10" height="8" rx="2" fill="#0f172a" opacity="0.9" />
-              <rect x="56" y="25" width="10" height="8" rx="2" fill="#0f172a" opacity="0.9" />
-              <circle cx="40" cy="52" r="4" fill="#0f172a" />
-              <circle cx="66" cy="52" r="4" fill="#0f172a" />
-              <path d="M58 18 L54 24 H62 Z" fill="#16a34a" />
-              <line x1="58" y1="18" x2="58" y2="22" stroke="#166534" stroke-width="1.5" />
-            </svg>
-          </div>
-          <div class="season-text">
-            <div class="season-heading">
-              <strong>Season’s greetings</strong> from the team at FindMeACar
-            </div>
-            <div class="season-sub">
-              May your next set of wheels be the best gift on your driveway this year. 🎁🚗
-            </div>
-          </div>
-        </section>
-
-        <!-- HERO -->
-        <section class="hero">
-          <div class="hero-avatar">
-            <div class="hero-avatar-main">FM</div>
-            <div class="hero-avatar-sub">FindMeACar</div>
+        <div class="hero-main">
+          <div class="hero-title">
+            <span class="highlight">FindMeACar-UK</span>
           </div>
 
-          <div class="hero-main">
-            <div class="hero-title">
-              <span class="highlight">FindMeACar</span>
-            </div>
-
-            <p class="hero-subtitle">
-              Designed to free up your time, backed by years of experience sourcing and purchasing vehicles.
-            </p>
-
-            <div class="hero-tags">
-              <span class="hero-tag">Save time searching</span>
-              <span class="hero-tag">Basic, in-depth &amp; premium options</span>
-              <span class="hero-tag">Straight to your phone</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- HOW IT WORKS -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">How it works</h2>
-            <span class="section-pill">3 steps</span>
-          </div>
-
-          <div class="section-body">
-            <div class="steps">
-              <div class="step">
-                <div class="step-badge">1</div>
-                <div>
-                  <strong>Tell us what you need</strong>
-                  Budget, mileage, fuel type, gearbox, body style and must-haves.
-                </div>
-              </div>
-
-              <div class="step">
-                <div class="step-badge">2</div>
-                <div>
-                  <strong>Choose your service level</strong>
-                  £30 Basic search, £50 In-depth search or £150 Premium concierge search.
-                </div>
-              </div>
-
-              <div class="step">
-                <div class="step-badge">3</div>
-                <div>
-                  <strong>Receive tailored car links</strong>
-                  We send matching listings directly to you.
-                </div>
-              </div>
-            </div>
-
-            <div class="cta-card">
-              <div class="cta-text">
-                <div class="cta-title">Finder’s fees</div>
-                <ul class="pricing-list">
-                  <li>
-                    <span class="pricing-tier-name">£30 – Basic search</span><br />
-                    A shortlist of suitable cars matched to your brief.
-                  </li>
-                  <li>
-                    <span class="pricing-tier-name">£50 – In-depth search</span><br />
-                    More results and tighter filtering with deeper searching.
-                  </li>
-                  <li>
-                    <span class="pricing-tier-name">£150 – Premium concierge search</span><br />
-                    Priority search with personalised guidance, negotiation support and scam checks.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- BEGIN YOUR SEARCH -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Begin your search</h2>
-            <span class="section-pill">Start</span>
-          </div>
-
-          <div class="section-body">
-            <p>
-              Choose your service level and how you’d like to contact us. We’ll open your secure Stripe payment page
-              in a new tab and a WhatsApp or email template at the same time.
-            </p>
-            <p style="margin-top:4px;">
-              Please complete payment first, then fill in the message template including the
-              <strong>payment email you used on Stripe</strong> and, if you have it, the
-              <strong>Stripe receipt/reference</strong> from your email receipt. This helps us match your payment
-              to your search quickly.
-            </p>
-            <p>If you don’t see a reply, please check your spam folder.</p>
-
-            <!-- BASIC -->
-            <div style="margin-top:10px;" class="info-title">
-              Basic search – £30
-            </div>
-            <p style="margin-bottom:6px;">
-              A clear shortlist of suitable cars matched to your requirements.
-            </p>
-            <div class="btn-row">
-              <button class="btn btn-primary"
-                      onclick="startSearch('whatsapp','basic')">
-                Begin basic search – WhatsApp &amp; pay
-              </button>
-              <button class="btn btn-secondary"
-                      onclick="startSearch('email','basic')">
-                Begin basic search – Email &amp; pay
-              </button>
-            </div>
-
-            <!-- IN-DEPTH -->
-            <div style="margin-top:16px;" class="info-title">
-              In-depth search – £50
-            </div>
-            <p style="margin-bottom:6px;">
-              More options, tighter filtering and deeper searching.
-            </p>
-            <div class="btn-row">
-              <button class="btn btn-primary"
-                      onclick="startSearch('whatsapp','indepth')">
-                Begin in-depth search – WhatsApp &amp; pay
-              </button>
-              <button class="btn btn-secondary"
-                      onclick="startSearch('email','indepth')">
-                Begin in-depth search – Email &amp; pay
-              </button>
-            </div>
-
-            <!-- PREMIUM -->
-            <div style="margin-top:16px;" class="info-title">
-              Premium concierge – £150
-            </div>
-            <p style="margin-bottom:6px;">
-              Priority search, personalised guidance, negotiation support and scam protection checks.
-            </p>
-            <div class="btn-row">
-              <button class="btn btn-primary"
-                      onclick="startSearch('whatsapp','premium')">
-                Begin premium search – WhatsApp &amp; pay
-              </button>
-              <button class="btn btn-secondary"
-                      onclick="startSearch('email','premium')">
-                Begin premium search – Email &amp; pay
-              </button>
-            </div>
-
-            <div class="chips">
-              <div class="chip">● Stripe handles your payment securely</div>
-              <div class="chip">● We match payments using your email / receipt reference</div>
-              <div class="chip">● Initial results usually within 24 hours</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Good to know</h2>
-            <span class="section-pill">FAQ</span>
-          </div>
-
-          <div class="section-body faq-list">
-            <div><strong>Do we inspect or buy the car for you?</strong><br />No — we source suitable listings. You handle viewings, checks and purchase.</div>
-            <div><strong>Do we guarantee cars?</strong><br />No — we don’t inspect or warranty vehicles.</div>
-            <div><strong>What areas do we cover?</strong><br />Online listings across the UK.</div>
-            <div><strong>Do we highlight red flags?</strong><br />We can flag details we notice, but this does not replace a professional inspection.</div>
-          </div>
-        </section>
-
-        <!-- TERMS -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Terms &amp; disclaimer</h2>
-            <span class="section-pill">Important</span>
-          </div>
-
-          <div class="section-body" style="font-size:12px;">
-            <p>
-              FindMeACar is a vehicle search and link-finding service. We search online listings based on the information you provide and share vehicles that appear to match your brief.
-            </p>
-            <p>
-              We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments and paperwork are your responsibility.
-            </p>
-            <p>
-              We do not guarantee condition, history, mileage, price, specification or availability.
-            </p>
-            <p>
-              You should carry out your own checks before any purchase.
-            </p>
-            <p>
-              From time to time, we may choose to donate a small percentage of our fees (for example, 1% of each search fee, pooled and given annually to children’s charities around Christmas). This is a voluntary initiative, separate from the service provided, and may be reviewed or changed in future.
-            </p>
-            <p>
-              By using this service, you confirm that you understand and accept these terms.
-            </p>
-          </div>
-        </section>
-
-        <footer class="footer">
-          <span>By <strong>FindMeACar</strong></span>
-          <span></span>
-        </footer>
-
-      </main>
-
-      <!-- RIGHT: SERVICE + SUBSCRIPTION -->
-      <aside class="side-card">
-        <div class="side-inner">
-          <div class="info-title">The service</div>
-          <p>
-            You tell us your budget, requirements and preferences. We do the searching and send you links to
-            vehicles that match, so you can spend less time looking and more time deciding.
+          <p class="hero-subtitle">
+            Designed to free up your time, backed by years of experience sourcing and purchasing vehicles across the UK.
           </p>
-          <ul class="info-list">
-            <li>£30 – Basic search with a clear shortlist</li>
-            <li>£50 – In-depth search with more options</li>
-            <li>£150 – Premium concierge search with priority handling</li>
-            <li>Results delivered directly to you, usually within 24 hours of payment</li>
-            <li>More personalised or prompt searches can be arranged if required, as long as this is discussed and agreed in advance</li>
-          </ul>
 
-          <hr style="border:none;border-top:1px solid rgba(148,163,184,0.4);margin:10px 0;" />
+          <div class="hero-tags">
+            <span class="hero-tag">Save time searching</span>
+            <span class="hero-tag">Used &amp; new cars</span>
+            <span class="hero-tag">Straight to your phone</span>
+            <span class="hero-tag">Independent &amp; transparent</span>
+          </div>
+        </div>
+      </section>
 
-          <div class="info-title">Market watcher</div>
-          <p>
-            For longer-term buyers, our optional subscription keeps you ahead of the market with regular updates.
+      <!-- How it works -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">How it works</h2>
+          <span class="section-pill">3 steps</span>
+        </div>
+
+        <div class="section-body">
+          <div class="steps">
+            <div class="step">
+              <div class="step-badge">1</div>
+              <div>
+                <strong>Tell us what you need</strong><br />
+                Share your budget, mileage preferences, fuel type, gearbox, body style, daily use and any must-have features.
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-badge">2</div>
+              <div>
+                <strong>Choose your service level</strong><br />
+                From a simple shortlist to more in-depth, tailored searching.
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-badge">3</div>
+              <div>
+                <strong>Receive tailored car links</strong><br />
+                We send links to cars that appear to match your brief, straight to WhatsApp or email.
+              </div>
+            </div>
+          </div>
+
+          <!-- Pricing & Stripe options -->
+          <div class="section-header" style="margin-top:10px;">
+            <h2 class="section-title">Finder’s fee</h2>
+            <span class="section-pill">Paid services</span>
+          </div>
+
+          <div class="cta-grid">
+            <div class="plan">
+              <div class="plan-price">£30 – Basic search</div>
+              <div class="plan-note">
+                A focused shortlist of suitable cars that match your brief.
+              </div>
+              <a class="btn-small"
+                 href="https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200"
+                 target="_blank" rel="noopener">
+                Pay now – Basic (£30)
+              </a>
+            </div>
+
+            <div class="plan">
+              <div class="plan-price">£50 – In-depth search</div>
+              <div class="plan-note">
+                More options and tighter filtering for a closer match.
+              </div>
+              <a class="btn-small"
+                 href="https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201"
+                 target="_blank" rel="noopener">
+                Pay now – In-depth (£50)
+              </a>
+            </div>
+
+            <div class="plan">
+              <div class="plan-price">Premium search</div>
+              <div class="plan-note">
+                For more complex or urgent requirements – discussed in advance.
+              </div>
+              <a class="btn-small"
+                 href="https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
+                 target="_blank" rel="noopener">
+                Pay now – Premium
+              </a>
+            </div>
+
+            <div class="plan">
+              <div class="plan-price">Subscription option</div>
+              <div class="plan-note">
+                For ongoing help (e.g. trade, repeat buyers or multiple vehicles).
+              </div>
+              <a class="btn-small"
+                 href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
+                 target="_blank" rel="noopener">
+                Pay now – Subscription
+              </a>
+            </div>
+          </div>
+
+          <p class="small-text">
+            If you prefer to pay by bank transfer, just ask when you contact us
+            and we will provide payment details and a unique reference for your search.
           </p>
-          <ul class="info-list">
-            <li>Weekly deal and price-drop alerts</li>
-            <li>Market trends and value tips</li>
-            <li>Scam and fraud warnings</li>
-            <li>Recommended vehicles for common budgets</li>
-            <li>Cancel anytime</li>
-          </ul>
 
-          <div class="btn-row" style="margin-top:6px;">
-            <a class="btn btn-secondary btn-stripe"
-               href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
+          <div class="btn-row">
+            <a class="btn btn-primary"
+               href="https://wa.me/447958452026?text=Hi%20FindMeACar-UK%2C%0A%0AI%20have%20a%20question%20about%20your%20car%20finding%20service.%0A%0A"
                target="_blank" rel="noopener">
-               Subscribe – £4.99/month
+               Contact us on WhatsApp
+            </a>
+
+            <a class="btn btn-secondary"
+               href="mailto:findmeacar-uk@outlook.com?subject=FindMeACar-UK%20Enquiry&body=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20ask%20about%20your%20car%20finding%20service.%0A%0A">
+               Email us
             </a>
           </div>
         </div>
-      </aside>
+      </section>
 
-    </div>
+      <!-- Begin Search -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Begin your search</h2>
+          <span class="section-pill">Start</span>
+        </div>
+
+        <div class="section-body">
+          <p>
+            Ready to begin? Use the buttons below to send us your search details.
+            We will respond promptly with your reference number and payment details,
+            or you can use the Stripe links above if you prefer to pay online first.
+          </p>
+
+          <p>
+            Once payment is confirmed, your personalised search will begin.
+            We normally respond within 24 hours with your initial results, unless otherwise agreed.
+          </p>
+
+          <p>If you don’t see a reply, please check your spam or junk folder.</p>
+
+          <div class="btn-row">
+            <a class="btn btn-primary"
+               href="https://wa.me/447958452026?text=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20%2F%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%2Fautomatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%2Fmodels%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%20%2F%20In-depth%20%C2%A350%20%2F%20Premium%20%2F%20Subscription)%3A%0A%0AAny%20other%20notes%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you."
+               target="_blank" rel="noopener">
+               Begin my search (WhatsApp)
+            </a>
+
+            <a class="btn btn-secondary"
+               href="mailto:findmeacar-uk@outlook.com?subject=Begin%20my%20FindMeACar-UK%20Search&body=Hi%20FindMeACar-UK%2C%0A%0AI%27d%20like%20to%20begin%20a%20car%20search.%20My%20details%20are%3A%0A%0AFull%20name%3A%0A%0APhone%20number%3A%0A%0APreferred%20contact%20method%20(WhatsApp%20%2F%20Email)%3A%0A%0ABudget%20(%C2%A3)%3A%0A%0AMaximum%20mileage%3A%0A%0AFuel%20type%3A%0A%0AGearbox%20(manual%2Fautomatic)%3A%0A%0ABody%20style%3A%0A%0APreferred%20makes%2Fmodels%20(if%20any)%3A%0A%0ALocation%20and%20travel%20distance%3A%0A%0AIdeal%20buying%20timeframe%3A%0A%0AService%20level%20(Basic%20%C2%A330%20%2F%20In-depth%20%C2%A350%20%2F%20Premium%20%2F%20Subscription)%3A%0A%0AAny%20other%20notes%3A%0A%0APlease%20send%20my%20search%20reference%20number%20and%20payment%20details.%0A%0AThank%20you.">
+               Begin my search (Email)
+            </a>
+          </div>
+
+          <div class="chips">
+            <div class="chip">● Payment by bank transfer or Stripe</div>
+            <div class="chip">● Unique reference provided</div>
+            <div class="chip">● Clear tracking on our side</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Good to know</h2>
+          <span class="section-pill">FAQ</span>
+        </div>
+
+        <div class="section-body faq-list">
+          <div>
+            <strong>Do you inspect or buy the car for me?</strong><br />
+            No – we source suitable listings based on your brief. You handle viewings, checks and purchase directly with the seller.
+          </div>
+          <div>
+            <strong>Do you guarantee the cars?</strong><br />
+            No – we don’t inspect or warranty vehicles. We recommend carrying out your own checks and, where appropriate, using a professional inspection.
+          </div>
+          <div>
+            <strong>What areas do you cover?</strong><br />
+            Online listings across the UK. You can tell us how far you’re prepared to travel.
+          </div>
+          <div>
+            <strong>Can you highlight potential red flags?</strong><br />
+            We can point out details that stand out in the advert or history that may be worth a closer look, but this does not replace your own checks or a professional inspection.
+          </div>
+        </div>
+      </section>
+
+      <!-- Terms -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Terms &amp; disclaimer</h2>
+          <span class="section-pill">Important</span>
+        </div>
+
+        <div class="section-body" style="font-size:12px;">
+          <p>
+            FindMeACar-UK is a vehicle search and link-finding service. We search online listings based on the information you provide
+            and share vehicles that appear to match your brief.
+          </p>
+          <p>
+            We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments and paperwork are your responsibility.
+          </p>
+          <p>
+            We do not guarantee condition, history, mileage, price, specification or availability of any vehicle. You should carry out your own checks
+            and, where appropriate, obtain a professional inspection before any purchase.
+          </p>
+          <p>
+            By using this service, you confirm that you understand and accept these terms.
+          </p>
+          <p style="margin-top:6px; font-size:11px; color:#9ca3af;">
+            We aim to donate 1% of each paid search or listing fee to children’s charities annually. This is done quietly in the background – our service is
+            designed to stand on its own, and any donations are simply our way of giving back as we grow.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <span>By <strong>FindMeACar-UK</strong></span>
+        <span></span>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT COLUMN – Sell your car with us -->
+    <aside class="side-card">
+      <div class="side-title">Advertise your car</div>
+      <p>
+        If you’d like more eyes on your car, you can submit your details for us to review and
+        potentially advertise on our platform.
+      </p>
+      <p>
+        <strong>Standard listing – £15 for 30 days</strong><br />
+        Your car will appear on our “cars for sale” area (coming online as we build inventory).
+      </p>
+      <p>
+        <strong>Renewals – £10 per additional 30 days</strong><br />
+        Keep your advert running if the car hasn’t sold yet.
+      </p>
+      <p class="small-text">
+        We’ll ask for clear photos (all four corners, interior, dashboard, wheels) and key details such
+        as mileage, MOT, service history and any known faults.
+      </p>
+      <p class="side-highlight">
+        To get started, contact us by WhatsApp or email and mention that you’d like to advertise your car.
+      </p>
+    </aside>
+
   </div>
-
-  <!-- COMBINED FLOW LOGIC -->
-  <script>
-    const STRIPE_LINKS = {
-      basic: "https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200",
-      indepth: "https://buy.stripe.com/aFadR93Xj6mOgl87MIaR201",
-      premium: "https://buy.stripe.com/6oU3cvfG14eGb0O3wsaR202"
-    };
-
-    const SERVICE_LABELS = {
-      basic: "Basic search (£30)",
-      indepth: "In-depth search (£50)",
-      premium: "Premium concierge search (£150)"
-    };
-
-    function buildMessage(planKey) {
-      const label = SERVICE_LABELS[planKey] || "car search service";
-
-      return (
-        "Hi FindMeACar,\n\n" +
-        "I'd like to begin a car search. My details are:\n\n" +
-        "Payment email address (used on Stripe):\n" +
-        "Stripe receipt / reference (if available):\n\n" +
-        "Full name:\n" +
-        "Phone number:\n" +
-        "Preferred contact method (WhatsApp / Email):\n" +
-        "Budget (£):\n" +
-        "Maximum mileage:\n" +
-        "Fuel type:\n" +
-        "Gearbox (manual or automatic):\n" +
-        "Body style:\n" +
-        "Preferred makes or models (if any):\n" +
-        "Location and travel distance:\n" +
-        "Ideal buying timeframe:\n\n" +
-        "I would like to use the " + label + ".\n\n" +
-        "I understand payment is handled securely via Stripe. Once my payment has gone through, " +
-        "please confirm my FindMeACar search reference number and begin my search.\n\n" +
-        "Thank you."
-      );
-    }
-
-    function startSearch(channel, planKey) {
-      const stripeUrl = STRIPE_LINKS[planKey];
-      const message = encodeURIComponent(buildMessage(planKey));
-
-      // 1) Open Stripe payment in a new tab
-      if (stripeUrl) {
-        window.open(stripeUrl, "_blank", "noopener");
-      }
-
-      // 2) Open WhatsApp or Email with the template
-      if (channel === "whatsapp") {
-        const waUrl = "https://wa.me/447958452026?text=" + message;
-        window.location.href = waUrl;
-      } else {
-        const mailUrl =
-          "mailto:findmeacar-uk@outlook.com" +
-          "?subject=" + encodeURIComponent("Begin my FindMeACar search") +
-          "&body=" + message;
-        window.location.href = mailUrl;
-      }
-    }
-  </script>
 </body>
 </html>
