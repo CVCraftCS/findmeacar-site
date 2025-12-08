@@ -878,14 +878,20 @@
   </div>
 
   <!-- HIDDEN NETLIFY FORM FOR AUTO-LOGGING ENQUIRIES -->
-  <form name="enquiry-log" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="reference" />
-    <input type="text" name="planKey" />
-    <input type="text" name="service" />
-    <input type="text" name="channel" />
-    <input type="text" name="timestamp" />
-    <input type="text" name="bot-field" />
-  </form>
+  <form name="enquiry-log"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden>
+  <input type="hidden" name="form-name" value="enquiry-log" />
+  <input type="text" name="reference" />
+  <input type="text" name="planKey" />
+  <input type="text" name="service" />
+  <input type="text" name="channel" />
+  <input type="text" name="timestamp" />
+  <input type="text" name="bot-field" />
+</form>
+
 
   <!-- COMBINED FLOW LOGIC WITH AUTO REFERENCE + NETLIFY LOGGING -->
   <script>
