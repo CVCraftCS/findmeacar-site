@@ -2,27 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>FindMeACar – Personal Car Finder Service</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO -->
-  <meta name="description" content="FindMeACar helps you find your next car quickly. Tell us your budget and requirements and we send you tailored listings. Basic, in-depth and premium search options, plus a simple way to advertise your car." />
-  <meta name="robots" content="index,follow" />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="FindMeACar – Personal Car Finder Service" />
-  <meta property="og:description" content="Independent car-finding service. You tell us what you need. We search, shortlist and send you tailored car links." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.findmeacar-uk.co.uk/" />
-  <!-- When you have a real image, update this URL -->
-  <meta property="og:image" content="https://www.findmeacar-uk.co.uk/og-image.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FindMeACar – Personal Car Finder Service" />
-  <meta name="twitter:description" content="Independent car-finding help with simple fixed fees and fast responses." />
-
-  <!-- PWA-ish bits from earlier (icon etc) -->
+  <title>FindMeACar – Car Finder Service</title>
   <meta name="theme-color" content="#020617" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -126,7 +108,7 @@
 
     .side-card { padding: 14px 14px 16px; }
 
-    .side-inner { display: flex; flex-direction: column; gap: 8px; }
+    .side-inner { display: flex; flex-direction: column; gap: 10px; }
 
     .app {
       padding: 22px 18px 22px;
@@ -268,7 +250,7 @@
     }
 
     .hero-title .highlight {
-      background: linear-gradient(120deg, #facc15, #22c55e, #38bdf8);
+      background: linear-gradient(120deg, #facc15, #facc15, #fbbf24);
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -519,6 +501,21 @@
 
     .footer strong { color: var(--accent); }
 
+    /* Small wow / trust section */
+    .trust-points {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .trust-points strong {
+      color: #facc15;
+      font-weight: 600;
+    }
+
     @media (min-width: 768px) {
       body { padding: 28px; }
     }
@@ -544,38 +541,42 @@
       <!-- LEFT: ABOUT + MARKET WATCHER -->
       <aside class="side-card">
         <div class="side-inner">
-          <div class="info-title">About us</div>
-          <p>
-            FindMeACar was created to help people who don’t have the time or desire to scroll through pages of car
-            adverts. We use our experience buying and running vehicles to narrow the search and highlight options
-            that fit what you actually need.
-          </p>
-          <ul class="info-list">
-            <li>Independent, search-only service</li>
-            <li>Focused on UK used and nearly-new cars</li>
-            <li>Straightforward communication via WhatsApp or email</li>
-          </ul>
+          <div>
+            <div class="info-title">About us</div>
+            <p>
+              FindMeACar was created to help people who don’t have the time or desire to scroll through pages of car
+              adverts. We use experience buying and running vehicles to narrow the search and highlight options
+              that fit what you actually need.
+            </p>
+            <ul class="info-list">
+              <li>Independent, search-only service</li>
+              <li>Focused on UK used and nearly-new cars</li>
+              <li>Straightforward communication via WhatsApp or email</li>
+            </ul>
+          </div>
 
-          <hr style="border:none;border-top:1px solid rgba(148,163,184,0.4);margin:10px 0;" />
+          <hr style="border:none;border-top:1px solid rgba(148,163,184,0.4);margin:8px 0;" />
 
-          <div class="info-title">Market watcher</div>
-          <p>
-            For longer-term buyers, our optional subscription keeps you ahead of the market with regular updates.
-          </p>
-          <ul class="info-list">
-            <li>Weekly deal and price-drop alerts</li>
-            <li>Market trends and value tips</li>
-            <li>Scam and fraud warnings</li>
-            <li>Recommended vehicles for common budgets</li>
-            <li>Cancel anytime</li>
-          </ul>
+          <div>
+            <div class="info-title">Market watcher</div>
+            <p>
+              For longer-term buyers, our optional subscription keeps you ahead of the market with regular updates.
+            </p>
+            <ul class="info-list">
+              <li>Weekly deal and price-drop alerts</li>
+              <li>Market trends and value tips</li>
+              <li>Scam and fraud warnings</li>
+              <li>Recommended vehicles for common budgets</li>
+              <li>Cancel anytime</li>
+            </ul>
 
-          <div class="btn-row" style="margin-top:6px;">
-            <a class="btn btn-primary btn-stripe"
-               href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
-               target="_blank" rel="noopener">
-               Subscribe – £4.99/month
-            </a>
+            <div class="btn-row" style="margin-top:6px;">
+              <a class="btn btn-primary btn-stripe"
+                 href="https://buy.stripe.com/9B6aEX3XjdPg6Ky9UQaR203"
+                 target="_blank" rel="noopener">
+                 Subscribe – £4.99/month
+              </a>
+            </div>
           </div>
         </div>
       </aside>
@@ -638,6 +639,19 @@
               <span class="hero-tag">Basic, in-depth &amp; premium options</span>
               <span class="hero-tag">Straight to your phone</span>
             </div>
+          </div>
+        </section>
+
+        <!-- SMALL WOW / TRUST SECTION -->
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Why people use FindMeACar</h2>
+            <span class="section-pill">Trust</span>
+          </div>
+          <div class="section-body trust-points">
+            <p><strong>Independent search-only.</strong> We don’t sell cars and we don’t work on commission – our job is simply to find options that fit what you’ve asked for.</p>
+            <p><strong>Time back in your day.</strong> You avoid hours of scrolling and filtering – we do the legwork and send you the links.</p>
+            <p><strong>You stay in control.</strong> You still handle viewings, checks and the final decision. We just bring the right cars to your attention faster.</p>
           </div>
         </section>
 
@@ -830,24 +844,9 @@
 
       </main>
 
-      <!-- RIGHT: SERVICE + SELL YOUR CAR -->
+      <!-- RIGHT: SELL YOUR CAR -->
       <aside class="side-card">
         <div class="side-inner">
-          <div class="info-title">The service</div>
-          <p>
-            You tell us your budget, requirements and preferences. We do the searching and send you links to
-            vehicles that match, so you can spend less time looking and more time deciding.
-          </p>
-          <ul class="info-list">
-            <li>£30 – Basic search with a clear shortlist</li>
-            <li>£50 – In-depth search with more options</li>
-            <li>£150 – Premium concierge search with priority handling</li>
-            <li>Results delivered directly to you, usually within 24 hours of payment</li>
-            <li>More personalised or prompt searches can be arranged if required, as long as this is discussed and agreed in advance</li>
-          </ul>
-
-          <hr style="border:none;border-top:1px solid rgba(148,163,184,0.4);margin:12px 0;" />
-
           <div class="info-title">Sell your car with us</div>
           <p>
             You can also submit your car for advertising through FindMeACar. Once approved, we can share it with
