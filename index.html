@@ -119,6 +119,13 @@
       flex-wrap: wrap;
     }
 
+    .status-block {
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:210px;
+    }
+
     .status-pill {
       display: inline-flex;
       align-items: center;
@@ -153,6 +160,10 @@
       color: var(--text-soft);
       font-size: 13px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.45);
+    }
+
+    .festive-banner strong {
+      color:#ffffff;
     }
 
     .festive-banner span.highlight {
@@ -534,6 +545,51 @@
     }
 
     /* --------------------
+       INFO GRID (FAQ + TERMS)
+    --------------------- */
+
+    .info-grid-section {
+      margin-top: 22px;
+      background: rgba(7,11,26,0.98);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 20px;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.65);
+    }
+
+    .info-grid {
+      display:grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.3fr);
+      gap:18px;
+    }
+
+    @media (max-width: 840px){
+      .info-grid{
+        grid-template-columns:minmax(0,1fr);
+      }
+    }
+
+    .info-title {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .faq-item-title {
+      font-weight:600;
+      color:#ffffff;
+      font-size:13px;
+      margin-top:6px;
+    }
+
+    .faq-item-text {
+      font-size:13px;
+      color:var(--text-soft);
+    }
+
+    /* --------------------
        FOOTER NOTE
     --------------------- */
 
@@ -555,7 +611,7 @@
 
       <!-- STATUS + FESTIVE -->
       <div class="top-strip">
-        <div style="display:flex;flex-direction:column;gap:6px;min-width:210px;">
+        <div class="status-block">
           <div class="status-pill">
             <span class="status-pill-dot"></span>
             <span>FindMeACar-UK Online</span>
@@ -567,8 +623,8 @@
           <div>
             <strong>Season’s greetings from FindMeACar-UK</strong>
             <span class="festive-banner-emoji">🎄</span><br>
-            Wishing you safe, smooth motoring into the New Year –
-            whether you’re upgrading, downsizing or buying your first car.
+            Wishing you safe, smooth motoring into the New Year – whether you’re upgrading,
+            downsizing or buying your first car.
           </div>
           <button class="nyw-button">New year, new set of wheels</button>
         </div>
@@ -762,6 +818,56 @@
           </p>
         </aside>
       </div>
+
+      <!-- GOOD TO KNOW + TERMS -->
+      <section class="info-grid-section">
+        <div class="info-grid">
+          <!-- Good to know -->
+          <div>
+            <div class="info-title">Good to know</div>
+
+            <div class="faq-item-title">Do you inspect or buy the car for me?</div>
+            <div class="faq-item-text">
+              No – we source suitable listings based on your brief. You handle viewings, checks and purchase
+              directly with the sellers.
+            </div>
+
+            <div class="faq-item-title">Do you guarantee the cars?</div>
+            <div class="faq-item-text">
+              No – we don’t inspect or warranty vehicles. We recommend carrying out your own checks and,
+              where appropriate, using a professional inspection.
+            </div>
+
+            <div class="faq-item-title">What areas do you cover?</div>
+            <div class="faq-item-text">
+              Online listings across the UK. You can tell us how far you’re prepared to travel.
+            </div>
+
+            <div class="faq-item-title">Can you highlight potential red flags?</div>
+            <div class="faq-item-text">
+              We can flag details we notice in the advert or history that may be worth a closer look, but this
+              does not replace your own checks or a professional inspection.
+            </div>
+          </div>
+
+          <!-- Terms & disclaimer -->
+          <div>
+            <div class="info-title">Terms &amp; disclaimer</div>
+            <p style="font-size:13px;">
+              FindMeACar-UK is a vehicle search and link-finding service. We search online listings based on the
+              information you provide and share vehicles that appear to match your brief.
+            </p>
+            <p style="font-size:13px;margin-top:6px;">
+              We do not own, inspect, test or sell any vehicles. All viewings, checks, negotiations, payments
+              and paperwork are your responsibility.
+            </p>
+            <p style="font-size:13px;margin-top:6px;">
+              You should always perform your own due diligence before buying any vehicle, including (where
+              appropriate) a professional inspection and history check.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <!-- FOOTER NOTE -->
       <div class="footer-note">
