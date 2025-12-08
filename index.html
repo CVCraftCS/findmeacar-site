@@ -877,7 +877,17 @@
     </div>
   </div>
 
-  <!-- COMBINED FLOW LOGIC WITH AUTO REFERENCE -->
+  <!-- HIDDEN NETLIFY FORM FOR AUTO-LOGGING ENQUIRIES -->
+  <form name="enquiry-log" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="reference" />
+    <input type="text" name="planKey" />
+    <input type="text" name="service" />
+    <input type="text" name="channel" />
+    <input type="text" name="timestamp" />
+    <input type="text" name="bot-field" />
+  </form>
+
+  <!-- COMBINED FLOW LOGIC WITH AUTO REFERENCE + NETLIFY LOGGING -->
   <script>
     const STRIPE_LINKS = {
       basic: "https://buy.stripe.com/6oU28r65r7qS5Guc2YaR200",
@@ -896,7 +906,7 @@
       const yy = String(now.getFullYear()).slice(-2);
       const mm = String(now.getMonth() + 1).padStart(2, "0");
       const dd = String(now.getDate()).padStart(2, "0");
-      const timeFragment = String(now.getTime()).slice(-5); // last 5 digits of ms timestamp
+      const timeFragment = String(now.getTime()).slice(-5);
       const planCode = (planKey || "GEN").toUpperCase();
 
       return `FMC-${yy}${mm}${dd}-${timeFragment}-${planCode}`;
@@ -929,23 +939,43 @@
       );
     }
 
+    function logEnquiryToNetlify(reference, planKey, channel) {
+      const formData = new FormData();
+      formData.append("form-name", "enquiry-log");
+      formData.append("reference", reference);
+      formData.append("planKey", planKey);
+      formData.append("service", SERVICE_LABELS[planKey] || "");
+      formData.append("channel", channel);
+      formData.append("timestamp", new Date().toISOString());
+
+      fetch("/", {
+        method: "POST",
+        body: formData
+      }).catch((err) => {
+        console.error("Netlify form log failed", err);
+      });
+    }
+
     function startSearch(channel, planKey) {
       const stripeUrl = STRIPE_LINKS[planKey];
 
-      // Generate a unique reference for this enquiry
       const reference = generateReference(planKey);
 
-      // Show it to the user so they can note it down
-      alert("Your FindMeACar reference number is:\n\n" + reference + "\n\nPlease keep this safe for your records.");
+      alert(
+        "Your FindMeACar reference number is:\n\n" +
+        reference +
+        "\n\nPlease keep this safe for your records."
+      );
+
+      // Log to Netlify Forms in the background
+      logEnquiryToNetlify(reference, planKey, channel);
 
       const message = encodeURIComponent(buildMessage(planKey, reference));
 
-      // 1) Open Stripe payment in a new tab
       if (stripeUrl) {
         window.open(stripeUrl, "_blank", "noopener");
       }
 
-      // 2) Open WhatsApp or Email with the template (including the reference)
       if (channel === "whatsapp") {
         const waUrl = "https://wa.me/447958452026?text=" + message;
         window.location.href = waUrl;
